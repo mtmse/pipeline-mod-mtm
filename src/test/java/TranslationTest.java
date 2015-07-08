@@ -57,6 +57,7 @@ public class TranslationTest {
 			felixDeclarativeServices(),
 			mavenBundle().groupId("com.google.guava").artifactId("guava").versionAsInProject(),
 			mavenBundle().groupId("org.daisy.libs").artifactId("jstyleparser").versionAsInProject(),
+			mavenBundle().groupId("org.unbescape").artifactId("unbescape").versionAsInProject(),
 			mavenBundle().groupId("org.daisy.braille").artifactId("braille-css").versionAsInProject(),
 			mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.antlr-runtime").versionAsInProject(),
 			mavenBundle().groupId("com.googlecode.texhyphj").artifactId("texhyphj").versionAsInProject(),
@@ -72,7 +73,7 @@ public class TranslationTest {
 			brailleModule("dotify-saxon"),
 			brailleModule("dotify-calabash"),
 			brailleModule("dotify-utils"),
-			thisBundle("org.daisy.pipeline.modules.braille", "mod-mtm"),
+			thisBundle(),
 			xprocspecBundles(),
 			junitBundles()
 		);
