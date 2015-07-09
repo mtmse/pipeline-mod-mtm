@@ -23,6 +23,7 @@ import static org.daisy.pipeline.braille.common.Transform.Provider.util.dispatch
 import static org.daisy.pipeline.braille.common.Transform.Provider.util.logCreate;
 import static org.daisy.pipeline.braille.common.Transform.Provider.util.logSelect;
 import static org.daisy.pipeline.braille.common.Transform.Provider.util.memoize;
+import static org.daisy.pipeline.braille.common.util.Locales.parseLocale;
 import org.daisy.pipeline.braille.common.WithSideEffect;
 import org.daisy.pipeline.braille.common.XProcTransform;
 import org.daisy.pipeline.braille.dotify.DotifyTranslator;
@@ -58,6 +59,7 @@ public interface MTMCSSBlockTransform extends CSSBlockTransform, XProcTransform 
 		 * Recognized features:
 		 *
 		 * - translator: Will only match if the value is `mtm'.
+		 * - locale: Will only match if the language subtag is 'sv'.
 		 *
 		 */
 		public Iterable<MTMCSSBlockTransform> get(String query) {
@@ -89,6 +91,9 @@ public interface MTMCSSBlockTransform extends CSSBlockTransform, XProcTransform 
 							public MTMCSSBlockTransform _apply() {
 								Map<String,Optional<String>> q = new HashMap<String,Optional<String>>(parseQuery(query));
 								Optional<String> o;
+								if ((o = q.remove("locale")) != null)
+									if (!"sv".equals(parseLocale(o.get()).getLanguage()))
+										throw new NoSuchElementException();
 								if ((o = q.remove("translator")) != null)
 									if (o.get().equals("mtm"))
 										if (q.size() == 0) {
