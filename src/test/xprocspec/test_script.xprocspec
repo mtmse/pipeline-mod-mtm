@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.daisy.org/ns/xprocspec"
+               xmlns:mtm="http://www.mtm.se/pipeline/"
+               script="../../main/resources/xml/dtbook-to-pef.xpl">
+  
+  <x:scenario label="dtbook-to-pef">
+    <x:call step="mtm:dtbook-to-pef">
+      <x:input port="source">
+        <x:document type="inline">
+          <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="sv">
+            <book>
+              <bodymatter>
+                <p>Testar modulen</p>
+              </bodymatter>
+            </book>
+          </dtbook>
+        </x:document>
+      </x:input>
+      <x:option name="output-dir" select="concat($temp-dir,'output-dir/')"/>
+    </x:call>
+    <x:context label="pef">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/test_script.pef"/>
+    </x:context>
+    <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="inline">
+        <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1">
+          <head>
+            <meta>
+              <dc:format xmlns:dc="http://purl.org/dc/elements/1.1/">application/x-pef+xml</dc:format>
+            </meta>
+          </head>
+          <body>
+            <volume cols="40" rows="25" rowgap="0" duplex="false">
+              <section>
+                <page>
+                  <row>⠀</row>
+                  <row>⠀</row>
+                  <row>⠠⠞⠑⠎⠞⠁⠗⠀⠍⠕⠙⠥⠇⠑⠝</row>
+                  <row>⠀</row>
+                  <row>⠀</row>
+                </page>
+              </section>
+            </volume>
+          </body>
+        </pef>
+      </x:document>
+    </x:expect>
+  </x:scenario>
+  
+</x:description>

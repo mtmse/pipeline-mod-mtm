@@ -31,9 +31,7 @@
     </x:context>
     <x:expect label="result" type="compare">
       <x:document type="inline">
-        <div xmlns="http://www.w3.org/1999/xhtml">
-          <p>⠋⠕⠕⠃⠁⠗</p>
-        </div>
+        <div xmlns="http://www.w3.org/1999/xhtml">⠀<p>⠋⠕⠕⠃⠁⠗</p>⠀</div>
       </x:document>
     </x:expect>
   </x:scenario>

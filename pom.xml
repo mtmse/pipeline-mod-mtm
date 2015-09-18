@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.daisy.pipeline.modules.braille</groupId>
     <artifactId>braille-modules-parent</artifactId>
-    <version>1.9.1</version>
+    <version>1.9.5-SNAPSHOT</version>
     <relativePath />
   </parent>
 
@@ -29,6 +29,9 @@
       <groupId>org.daisy.pipeline.modules.braille</groupId>
       <artifactId>dotify-core</artifactId>
     </dependency>
+    <!--
+        runtime dependencies
+    -->
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
       <artifactId>css-utils</artifactId>
@@ -48,6 +51,14 @@
       <groupId>org.daisy.dotify</groupId>
       <artifactId>dotify.hyphenator.impl</artifactId>
       <scope>runtime</scope>
+    </dependency>
+    <!--
+        test dependencies
+    -->
+    <dependency>
+      <groupId>org.daisy.pipeline.modules.braille</groupId>
+      <artifactId>pef-utils</artifactId>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.daisy.maven</groupId>
