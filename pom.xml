@@ -52,6 +52,11 @@
       <artifactId>dotify.hyphenator.impl</artifactId>
       <scope>runtime</scope>
     </dependency>
+    <dependency>
+      <groupId>org.daisy.dotify</groupId>
+      <artifactId>dotify.text.impl</artifactId>
+      <scope>runtime</scope>
+    </dependency>
     <!--
         test dependencies
     -->
