@@ -8,6 +8,11 @@
                 exclude-inline-prefixes="#all"
                 name="main">
     
+    <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+        <h1 px:role="name">DTBook to PEF (MTM)</h1>
+        <p px:role="desc">Transforms a DTBook (DAISY 3 XML) document into a PEF.</p>
+    </p:documentation>
+    
     <p:input port="source" primary="true" px:name="source" px:media-type="application/x-dtbook+xml"/>
     
     <p:option name="include-preview" required="false" px:type="boolean" select="''"/>
