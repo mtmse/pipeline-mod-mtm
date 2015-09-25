@@ -18,14 +18,87 @@
     <p:option name="include-preview" required="false" px:type="boolean" select="''"/>
     <p:option name="include-brf" required="false" px:type="boolean" select="''"/>
     <p:option name="output-dir" required="true" px:output="result" px:type="anyDirURI"/>
-    
+    <p:option name="identifier" required="true" px:type="string"/>
+    <p:option name="rows" required="false" px:type="string" select="29">
+        <p:documentation>Number of rows</p:documentation>
+    </p:option>
+    <p:option name="cols" required="false" px:type="string" select="28">
+        <p:documentation>Number of characters on a row that can contain text.</p:documentation>
+    </p:option>
+    <p:option name="rowgap" required="false" px:type="string" select="0">
+        <p:documentation>Row spacing as defined in the PEF-format.</p:documentation>
+    </p:option>
+    <p:option name="inner-margin" required="false" px:type="string" select="2">
+        <p:documentation>The inner margin.</p:documentation>
+    </p:option>
+    <p:option name="outer-margin" required="false" px:type="string" select="2">
+        <p:documentation>The outer margin.</p:documentation>
+    </p:option>
+    <p:option name="splitterMax" required="false" px:type="string" select="50">
+        <p:documentation>The maximum number of sheets in a volume.</p:documentation>
+    </p:option>
+    <p:option name="keepCaptions" required="false" px:type="boolean" select="true()">
+        <p:documentation>Keeps imggroup if value is true or if imagegroup contains a prodnote</p:documentation>
+    </p:option>
+
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dotify-utils/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl"/>
+
+    <p:xslt>
+		<p:input port="stylesheet">
+			<p:document href="move-cover-text.xsl"/>
+		</p:input>
+		<p:input port="parameters">
+			<p:empty/>
+		</p:input>
+	</p:xslt>
+
+    <p:xslt>
+		<p:input port="stylesheet">
+			<p:document href="punktinfo.xsl"/>
+		</p:input>
+        <!-- format-date(current-date(), '[Y0001]') -->
+        <p:with-param name="year" select="'2015'"/>
+        <p:with-param name="identifier" select="$identifier"/>
+        <p:with-param name="captions" select="if ($keepCaptions) then ('keep') else ('remove')"></p:with-param>
+		<p:input port="parameters">
+		      <p:empty/>
+		</p:input>
+	</p:xslt>
     
-    <dotify:xml-to-obfl locale="sv-SE" dotify-options="(rows:29)(cols:28)(rowgap:4)"/>
+    <dotify:xml-to-obfl locale="sv-SE">
+        <!-- <p:with-option name="identifier" select="$identifier"/> -->
+        <p:with-option name="rows" select="$rows"/>
+        <p:with-option name="cols" select="$cols"/>
+        <p:with-option name="rowgap" select="$rowgap"/>
+        <p:with-option name="inner-margin" select="$inner-margin"/>
+        <p:with-option name="outer-margin" select="$outer-margin"/>
+        <p:with-option name="splitterMax" select="$splitterMax"/>
+        
+        <!-- <p:with-option name="format" select="'pef'"/> -->
+        <!-- dotify-options="(rows:29)(cols:28)(rowgap:0)" -->
+    </dotify:xml-to-obfl>
     
     <dotify:obfl-to-pef locale="sv-SE" mode="uncontracted"/>
-    
+
+    <p:xslt>
+		<p:input port="stylesheet">
+			<p:document href="pef-meta-finalizer.xsl"/>
+		</p:input>
+		<p:input port="parameters">
+			<p:empty/>
+		</p:input>
+	</p:xslt>
+	
+	<p:xslt>
+		<p:input port="stylesheet">
+			<p:document href="pef-section-patch.xsl"/>
+		</p:input>
+		<p:input port="parameters">
+			<p:empty/>
+		</p:input>
+	</p:xslt>
+
     <pef:store>
         <p:with-option name="output-dir" select="$output-dir"/>
         <p:with-option name="name" select="replace(p:base-uri(/),'^.*/([^/]*)\.[^/\.]*$','$1')">
