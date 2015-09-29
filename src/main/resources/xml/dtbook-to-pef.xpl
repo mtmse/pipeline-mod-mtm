@@ -113,8 +113,6 @@
 		<p:input port="stylesheet">
 			<p:document href="punktinfo.xsl"/>
 		</p:input>
-        <!-- format-date(current-date(), '[Y0001]') -->
-        <p:with-param name="year" select="'2015'"/>
         <p:with-param name="identifier" select="$identifier"/>
         <!-- Negative form is used, because keep is a better choice for unexpected input -->
         <p:with-param name="captions" select="if ($keepCaptions='false') then ('remove') else ('keep')"></p:with-param>

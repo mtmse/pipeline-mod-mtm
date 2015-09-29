@@ -2,7 +2,7 @@
 <!--
 	punktinfo
 		Version
-			2009-12-16
+			2015-09-29
 
 		Description
 			Prepares a dtbook for use in braille-production at MTM by:
@@ -29,19 +29,10 @@
 			(x) DTBook
 			( ) None
 
-		Tests
-			XMLSpy XSLT engine	( ) 2005	( ) 2006	( ) 2007
-			MSXML				( ) 3.0		( ) 4.0		( ) 6.0
-			Saxon				( ) 6.5.3	( ) 8.8		( ) 9.0.0.2j
-
-			(x) = pass
-			(-) = fail
-			( ) = not tested
-
 		Author
 			Joel Håkansson
 -->
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet version="2.0"
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:dtb="http://www.daisy.org/z3986/2005/dtbook/"
 	xmlns:d="http://www.tpb.se/stylesheets/dtbinfo"
@@ -54,7 +45,7 @@
 	<xsl:include href="./lib/messages/errors.xsl"/>
 	<xsl:include href="./lib/localization.xsl"/>
 	
-	<xsl:param name="year" select="2009"/>
+	<xsl:param name="year" select="format-date(current-date(), '[Y0001]')"/>
 	<xsl:param name="identifier" select="'P??????'"/>
 	<!-- keep/remove captions -->
 	<xsl:param name="captions" select="'keep'"/>
