@@ -49,6 +49,7 @@
          <dc:format>application/x-pef+xml</dc:format>
          <dc:identifier>identifier?</dc:identifier>
          <dc:date>2015-09-29</dc:date>
+         <dc:publisher>MTM</dc:publisher>
          <ext:sheets>4</ext:sheets>
          <ext:volumes>1</ext:volumes>
          <ext:kiloChars>0</ext:kiloChars>
