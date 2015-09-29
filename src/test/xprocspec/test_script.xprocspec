@@ -30,9 +30,10 @@
       </x:input>
       <x:option name="output-dir" select="concat($temp-dir,'output-dir/')"/>
       <x:option name="identifier" select="'P00000'"/>
+      <x:option name="include-obfl" select="'false'"/>
     </x:call>
     <x:context label="pef">
-      <x:document type="file" base-uri="temp-dir" href="output-dir/test_script.pef"/>
+      <x:document type="file" base-uri="temp-dir" href="output-dir/P00000.pef"/>
     </x:context>
     <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
       <x:document type="inline">
