@@ -1,3 +1,11 @@
+pipeline-mod-mtm v1.2.0
+=======================
+
+Includes
+--------
+- Modified DTBook to PEF script to include more options
+
+
 pipeline-mod-mtm v1.1.0
 =======================
 
