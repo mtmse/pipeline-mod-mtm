@@ -156,6 +156,7 @@
     	<p:input port="source">
     		<p:pipe step="obfl" port="result"/> 
     	</p:input>
+    	<p:with-option name="identifier" select="$identifier"/> 
     </dotify:obfl-to-pef>
 
     <p:xslt>
