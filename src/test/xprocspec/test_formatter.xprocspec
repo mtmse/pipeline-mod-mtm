@@ -20,7 +20,7 @@
     </p:declare-step>
   </x:script>
   
-  <x:scenario label="whitespace test">
+  <x:scenario label="whitespace test" pending="DotifyTranslator not selectable by ID yet">
     <x:call step="pxi:transform">
       <x:input port="source">
         <x:document type="inline">
@@ -44,7 +44,7 @@
             </meta>
           </head>
           <body>
-            <volume cols="40" rows="25" rowgap="0" duplex="false">
+            <volume cols="40" rows="25" rowgap="0" duplex="true">
               <section>
                 <page>
                   <row>⠋⠕⠕⠃⠁⠗</row>

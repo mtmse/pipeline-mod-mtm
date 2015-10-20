@@ -1,3 +1,20 @@
+pipeline-mod-mtm v1.3.0
+=======================
+
+Includes
+--------
+- Option to set PEF identifier (https://github.com/snaekobbi/pipeline-mod-mtm/issues/5)
+
+
+pipeline-mod-mtm v1.2.0
+=======================
+
+Includes
+--------
+- Modified DTBook to PEF script to include more options
+- Option to include OBFL (https://github.com/snaekobbi/pipeline-mod-mtm/issues/6)
+
+
 pipeline-mod-mtm v1.1.0
 =======================
 

@@ -9,7 +9,7 @@
 	
 	<xsl:param name="query" required="yes"/>
 	
-	<xsl:template match="css:block" mode="#all">
+	<xsl:template match="css:block" mode="#default before after">
 		<xsl:apply-templates select="node()[1]" mode="treewalk">
 			<xsl:with-param name="new-text-nodes" select="for $text in //text() return dotify:translate($query,$text)"/>
 		</xsl:apply-templates>
