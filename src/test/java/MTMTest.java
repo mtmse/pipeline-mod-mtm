@@ -45,7 +45,7 @@ public class MTMTest {
 	@Test
 	public void testTranslation() {
 		DotifyTranslator translator = provider.get("(locale:sv_SE)").iterator().next();
-		assertEquals("⠠⠙⠑⠞⠀⠜⠗⠀⠥⠝⠙⠑⠗⠀⠍⠕⠗⠛⠕⠝⠍⠪⠞⠑⠞⠀⠙⠑⠞⠀⠓⠜⠝⠙⠑⠗⠄⠀⠠⠍⠁⠗⠊⠁⠀⠓⠡⠇⠇⠑⠗⠀⠚⠥⠎⠞⠀⠏⠡⠀⠁⠞⠞⠀⠇⠜⠎⠁⠀⠥⠏⠏⠀⠑⠝⠀⠗⠁⠏⠏⠕⠗⠞⠄",
+		assertEquals("⠠⠙⠑⠞ ⠜⠗ ⠥⠝⠙⠑⠗ ⠍⠕⠗⠛⠕⠝⠍⠪⠞⠑⠞ ⠙⠑⠞ ⠓⠜⠝⠙⠑⠗⠄ ⠠⠍⠁⠗⠊⠁ ⠓⠡⠇⠇⠑⠗ ⠚⠥⠎⠞ ⠏⠡ ⠁⠞⠞ ⠇⠜⠎⠁ ⠥⠏⠏ ⠑⠝ ⠗⠁⠏⠏⠕⠗⠞⠄",
 		             translator.transform("Det är under morgonmötet det händer. Maria håller just på att läsa upp en rapport."));
 	}
 	
