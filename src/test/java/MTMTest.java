@@ -2,10 +2,19 @@ import javax.inject.Inject;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.StringWriter;
+
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 
 import org.daisy.maven.xproc.xprocspec.XProcSpecRunner;
 
 import org.daisy.pipeline.braille.dotify.DotifyTranslator;
+import org.daisy.pipeline.datatypes.DatatypeRegistry;
 
 import static org.daisy.pipeline.pax.exam.Options.brailleModule;
 import static org.daisy.pipeline.pax.exam.Options.calabashConfigFile;
@@ -35,6 +44,8 @@ import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.options;
 
+import org.w3c.dom.Document;
+
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
 public class MTMTest {
@@ -61,6 +72,28 @@ public class MTMTest {
 		                                      new File(baseDir, "target/xprocspec"),
 		                                      new XProcSpecRunner.Reporter.DefaultReporter());
 		assertTrue("XProcSpec tests should run with success", success);
+	}
+	
+	@Inject
+	private DatatypeRegistry datatypeRegistry;
+	
+	@Test
+	public void testDatatypes() throws Exception {
+		Document datatype = datatypeRegistry.getDatatype("mtm:line-spacing").get().asDocument();
+		assertEquals(
+			"<choice id=\"mtm:line-spacing\"><value>single</value><value>double</value></choice>",
+			serializeDOM(datatype).replaceAll("\n|\r|\t", ""));
+	}
+	
+	@Inject
+	private TransformerFactory transformerFactory;
+	
+	private String serializeDOM(Document doc) throws TransformerException {
+		Transformer transformer = transformerFactory.newTransformer();
+		transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+		StringWriter writer = new StringWriter();
+		transformer.transform(new DOMSource(doc), new StreamResult(writer));
+		return writer.getBuffer().toString();
 	}
 	
 	@Configuration
@@ -113,6 +146,8 @@ public class MTMTest {
 			pipelineModule("validation-utils"),
 			pipelineModule("dtbook-utils"),
 			pipelineModule("dtbook-validator"),
+			mavenBundle().groupId("org.daisy.pipeline").artifactId("framework-core").versionAsInProject(),
+			mavenBundle().groupId("org.daisy.pipeline").artifactId("saxon-adapter").versionAsInProject(),
 			thisBundle(),
 			xprocspecBundles(),
 			junitBundles()

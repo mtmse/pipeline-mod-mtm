@@ -46,13 +46,13 @@
 			<h2 px:role="name">Keep imggroup without prodnote</h2>
         	<p px:role="desc">Keeps imggroup if value is true or if imagegroup contains a prodnote.</p>
         </p:documentation>
-    </p:option>
-	<p:option name="single-line-spacing" required="false" px:type="boolean" select="'true'">
-        <p:documentation>
-            <h2 px:role="name">Single line spacing</h2>
-        	<p px:role="desc">Select 'No' for double line spacing.</p>
+	</p:option>
+	<p:option name="line-spacing" required="false" px:type="string" px:data-type="mtm:line-spacing" select="'single'">
+		<p:documentation>
+			<h2 px:role="name">Line spacing</h2>
+			<p px:role="desc">'single' or 'double' line spacing.</p>
 		</p:documentation>
-    </p:option>
+	</p:option>
     <p:option name="rows" required="false" px:type="string" select="29">
         <p:documentation>
         	<h2 px:role="name">Rows</h2>
@@ -126,7 +126,7 @@
         <p:with-option name="rows" select="if ($rows='') then (29) else ($rows)"/>
         <p:with-option name="cols" select="if ($cols='') then (28) else ($cols)"/>
         <!-- Negative form is used, because single line spacing is a better choice for unexpected input -->
-        <p:with-option name="rowgap" select="if ($single-line-spacing='false') then (4) else (0)"/>
+        <p:with-option name="rowgap" select="if ($line-spacing='double') then (4) else (0)"/>
         <p:with-option name="inner-margin" select="if ($inner-margin='') then (2) else ($inner-margin)"/>
         <p:with-option name="outer-margin" select="if ($outer-margin='') then (2) else ($outer-margin)"/>
         <p:with-option name="splitterMax" select="50"/> <!--  if ($splitterMax='') then (50) else ($splitterMax)"/> -->
