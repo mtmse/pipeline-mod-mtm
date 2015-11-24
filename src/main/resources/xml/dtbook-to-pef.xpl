@@ -41,11 +41,11 @@
 			<p px:role="desc"></p>
 		</p:documentation>
 	-->
-	<p:option name="keepCaptions" required="false" px:type="boolean" select="'true'">
-        <p:documentation>
+	<p:option name="keepCaptions" required="false" px:type="string" px:data-type="mtm:keep-captions" select="'yes'">
+		<p:documentation>
 			<h2 px:role="name">Keep imggroup without prodnote</h2>
-        	<p px:role="desc">Keeps imggroup if value is true or if imagegroup contains a prodnote.</p>
-        </p:documentation>
+			<p px:role="desc">Keeps imggroup if value is 'yes' or if imagegroup contains a prodnote.</p>
+		</p:documentation>
 	</p:option>
 	<p:option name="line-spacing" required="false" px:type="string" px:data-type="mtm:line-spacing" select="'single'">
 		<p:documentation>
@@ -84,12 +84,12 @@
 			<p px:role="desc">The maximum number of sheets in a volume.</p>
         </p:documentation>
     </p:option>  -->
-    <p:option name="include-obfl" required="false" px:type="boolean" select="'false'">
+	<p:option name="include-obfl" required="false" px:type="string" px:data-type="mtm:include-obfl" select="'no'">
 		<p:documentation>
 			<h2 px:role="name">Include OBFL</h2>
 			<p px:role="desc">Keeps the intermediary OBFL-file for debugging.</p>
 		</p:documentation>
-    </p:option>
+	</p:option>
     <p:option name="query" required="false" px:type="string" select="''">
     	<p:documentation>
     	    <h2 px:role="name">Advanced options</h2>
@@ -115,7 +115,7 @@
 		</p:input>
         <p:with-param name="identifier" select="$identifier"/>
         <!-- Negative form is used, because keep is a better choice for unexpected input -->
-        <p:with-param name="captions" select="if ($keepCaptions='false') then ('remove') else ('keep')"></p:with-param>
+        <p:with-param name="captions" select="if ($keepCaptions='no') then ('remove') else ('keep')"></p:with-param>
 		<p:input port="parameters">
 		      <p:empty/>
 		</p:input>
@@ -135,7 +135,7 @@
     </dotify:xml-to-obfl>
 
     <p:choose>
-    	<p:when test="$include-obfl='true'">
+    	<p:when test="$include-obfl='yes'">
 		    <p:store>
 				<p:input port="source">
 					<p:pipe step="obfl" port="result"/>
