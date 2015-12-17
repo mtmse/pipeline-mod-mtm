@@ -14,7 +14,7 @@
       <p:import href="http://www.daisy.org/pipeline/modules/braille/common-utils/library.xpl"/>
       <p:import href="http://www.daisy.org/pipeline/modules/braille/css-utils/library.xpl"/>
       <css:inline default-stylesheet="http://www.daisy.org/pipeline/modules/braille/dtbook-to-pef/css/default.css"/>
-      <px:transform type="css" query="(formatter:dotify)(translator:mtm)(locale:sv)">
+      <px:transform query="(input:css)(output:pef)(formatter:dotify)(translator:mtm)(locale:sv)">
         <p:with-option name="temp-dir" select="$temp-dir"/>
       </px:transform>
     </p:declare-step>

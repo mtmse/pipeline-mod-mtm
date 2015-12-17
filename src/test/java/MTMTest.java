@@ -1,17 +1,21 @@
 import javax.inject.Inject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.io.File;
-import java.io.FilenameFilter;
 
 import org.daisy.maven.xproc.xprocspec.XProcSpecRunner;
 
+import org.daisy.pipeline.braille.common.BrailleTranslator;
+import org.daisy.pipeline.braille.common.BrailleTranslator.CSSStyledText;
+import static org.daisy.pipeline.braille.common.Query.util.query;
 import org.daisy.pipeline.braille.dotify.DotifyTranslator;
 
 import static org.daisy.pipeline.pax.exam.Options.brailleModule;
 import static org.daisy.pipeline.pax.exam.Options.calabashConfigFile;
 import static org.daisy.pipeline.pax.exam.Options.domTraversalPackage;
 import static org.daisy.pipeline.pax.exam.Options.felixDeclarativeServices;
-import static org.daisy.pipeline.pax.exam.Options.forThisPlatform;
 import static org.daisy.pipeline.pax.exam.Options.logbackBundles;
 import static org.daisy.pipeline.pax.exam.Options.logbackConfigFile;
 import static org.daisy.pipeline.pax.exam.Options.pipelineModule;
@@ -30,7 +34,6 @@ import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 import org.ops4j.pax.exam.util.PathUtils;
 
-import static org.ops4j.pax.exam.CoreOptions.bundle;
 import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.options;
@@ -44,9 +47,9 @@ public class MTMTest {
 	
 	@Test
 	public void testTranslation() {
-		DotifyTranslator translator = provider.get("(locale:sv_SE)").iterator().next();
-		assertEquals("⠠⠙⠑⠞⠀⠜⠗⠀⠥⠝⠙⠑⠗⠀⠍⠕⠗⠛⠕⠝⠍⠪⠞⠑⠞⠀⠙⠑⠞⠀⠓⠜⠝⠙⠑⠗⠄⠀⠠⠍⠁⠗⠊⠁⠀⠓⠡⠇⠇⠑⠗⠀⠚⠥⠎⠞⠀⠏⠡⠀⠁⠞⠞⠀⠇⠜⠎⠁⠀⠥⠏⠏⠀⠑⠝⠀⠗⠁⠏⠏⠕⠗⠞⠄",
-		             translator.transform("Det är under morgonmötet det händer. Maria håller just på att läsa upp en rapport."));
+		BrailleTranslator.FromStyledTextToBraille translator = provider.get(query("(locale:sv_SE)")).iterator().next().fromStyledTextToBraille();
+		assertEquals(braille("⠠⠙⠑⠞ ⠜⠗ ⠥⠝⠙⠑⠗ ⠍⠕⠗⠛⠕⠝⠍⠪⠞⠑⠞ ⠙⠑⠞ ⠓⠜⠝⠙⠑⠗⠄ ⠠⠍⠁⠗⠊⠁ ⠓⠡⠇⠇⠑⠗ ⠚⠥⠎⠞ ⠏⠡ ⠁⠞⠞ ⠇⠜⠎⠁ ⠥⠏⠏ ⠑⠝ ⠗⠁⠏⠏⠕⠗⠞⠄"),
+		             translator.transform(styledText("Det är under morgonmötet det händer. Maria håller just på att läsa upp en rapport.","")));
 	}
 	
 	@Inject
@@ -119,4 +122,22 @@ public class MTMTest {
 		);
 	}
 	
+	private Iterable<CSSStyledText> styledText(String... textAndStyle) {
+		List<CSSStyledText> styledText = new ArrayList<CSSStyledText>();
+		String text = null;
+		boolean textSet = false;
+		for (String s : textAndStyle) {
+			if (textSet)
+				styledText.add(new CSSStyledText(text, s));
+			else
+				text = s;
+			textSet = !textSet; }
+		if (textSet)
+			throw new RuntimeException();
+		return styledText;
+	}
+	
+	private Iterable<String> braille(String... text) {
+		return Arrays.asList(text);
+	}
 }

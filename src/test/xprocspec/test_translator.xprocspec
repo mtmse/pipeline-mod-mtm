@@ -11,7 +11,7 @@
       <p:output port="result"/>
       <p:import href="http://www.daisy.org/pipeline/modules/braille/common-utils/library.xpl"/>
       <p:add-attribute match="html:p" attribute-name="style" attribute-value="display:block"/>
-      <px:transform type="css-block" query="(translator:mtm)(locale:sv)"/>
+      <px:transform query="(input:css)(input:html)(output:css)(translator:mtm)(locale:sv)"/>
       <p:delete match="@style"/>
     </p:declare-step>
   </x:script>
@@ -31,7 +31,9 @@
     </x:context>
     <x:expect label="result" type="compare">
       <x:document type="inline">
-        <div xmlns="http://www.w3.org/1999/xhtml">⠀<p>⠋⠕⠕⠃⠁⠗</p>⠀</div>
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          <p>⠋⠕⠕­⠃⠁⠗</p>
+        </div>
       </x:document>
     </x:expect>
   </x:scenario>

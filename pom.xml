@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.daisy.pipeline.modules.braille</groupId>
     <artifactId>braille-modules-parent</artifactId>
-    <version>1.9.6</version>
+    <version>1.9.8-SNAPSHOT</version>
     <relativePath />
   </parent>
 
@@ -78,7 +78,7 @@
     <dependency>
       <groupId>org.daisy.maven</groupId>
       <artifactId>xproc-engine-daisy-pipeline</artifactId>
-      <version>1.10-SNAPSHOT</version>
+      <version>1.9</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -124,7 +124,7 @@
         <configuration>
           <instructions>
             <_dsannotations>
-              se.mtm.pipeline.braille.impl.MTMCSSBlockTransform$Provider
+              se.mtm.pipeline.braille.impl.MTMTranslator$Provider
             </_dsannotations>
           </instructions>
         </configuration>
