@@ -43,37 +43,37 @@
 	-->
 	<p:option name="keepCaptions" required="false" px:type="boolean" select="'true'">
         <p:documentation>
-			<h2 px:role="name">Keep imggroup without prodnote</h2>
+			<h2 px:role="name">Block elements: Keep imggroup without prodnote</h2>
         	<p px:role="desc">Keeps imggroup if value is true or if imagegroup contains a prodnote.</p>
         </p:documentation>
     </p:option>
 	<p:option name="single-line-spacing" required="false" px:type="boolean" select="'true'">
         <p:documentation>
-            <h2 px:role="name">Single line spacing</h2>
-        	<p px:role="desc">Select 'No' for double line spacing.</p>
+            <h2 px:role="name">Translation/formatting of text: Line spacing</h2>
+        	<p px:role="desc">Will use single line spacing when selected.</p>
 		</p:documentation>
     </p:option>
     <p:option name="rows" required="false" px:type="string" select="29">
         <p:documentation>
-        	<h2 px:role="name">Rows</h2>
+        	<h2 px:role="name">Page layout: Page height (rows)</h2>
         	<p px:role="desc">Number of rows.</p>
         </p:documentation>
     </p:option>
     <p:option name="cols" required="false" px:type="string" select="28">
         <p:documentation>
-        	<h2 px:role="name">Columns</h2>
+        	<h2 px:role="name">Page layout: Page width (columns)</h2>
         	<p px:role="desc">Number of characters on a row.</p>
         </p:documentation>
     </p:option>
     <p:option name="inner-margin" required="false" px:type="string" select="2">
         <p:documentation>
-            <h2 px:role="name">Inner margin</h2>
+            <h2 px:role="name">Page layout: Inner margin</h2>
         	<p px:role="desc">The inner margin size, counted in characters.</p>
         </p:documentation>
     </p:option>
     <p:option name="outer-margin" required="false" px:type="string" select="2">
         <p:documentation>
-			<h2 px:role="name">Outer margin</h2>
+			<h2 px:role="name">Page layout: Outer margin</h2>
 			<p px:role="desc">The outer margin size, counted in characters.</p>
         </p:documentation>
     </p:option>
@@ -86,13 +86,13 @@
     </p:option>  -->
     <p:option name="include-obfl" required="false" px:type="boolean" select="'false'">
 		<p:documentation>
-			<h2 px:role="name">Include OBFL</h2>
+			<h2 px:role="name">Miscellaneous: Include OBFL</h2>
 			<p px:role="desc">Keeps the intermediary OBFL-file for debugging.</p>
 		</p:documentation>
     </p:option>
     <p:option name="query" required="false" px:type="string" select="''">
     	<p:documentation>
-    	    <h2 px:role="name">Advanced options</h2>
+    	    <h2 px:role="name">Miscellaneous: Advanced options</h2>
         	<p px:role="desc">Additional options using the following syntax: (name1:value1)(name2:value2)...</p>
     	</p:documentation>
     </p:option>
