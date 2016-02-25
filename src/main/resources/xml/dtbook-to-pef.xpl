@@ -30,13 +30,13 @@
     <p:option name="include-preview" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Include preview HTML</h2>
-            <p px:role="desc">Includes a preview HTML. **Not implemented**</p>
+            <p px:role="desc">Includes a preview HTML.</p>
         </p:documentation>
     </p:option>
     <p:option name="include-brf" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Include .brf</h2>
-            <p px:role="desc">Includes a brf-file. **Not implemented**</p>
+            <p px:role="desc">Includes a brf-file.</p>
         </p:documentation>
     </p:option>
     <p:option name="include-obfl" required="false" px:type="boolean" select="'false'">
@@ -102,10 +102,10 @@
             <p px:role="desc">The outer margin size, counted in characters.</p>
         </p:documentation>
     </p:option>
-    <p:option name="duplex" required="false" px:type="boolean" select="'false'">
+    <p:option name="duplex" required="false" px:type="boolean" select="'true'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Page layout: Duplex</h2>
-            <p px:role="desc">When enabled, will print on both sides of the paper. **Not implemented**</p>
+            <p px:role="desc">When enabled, will print on both sides of the paper.</p>
         </p:documentation>
     </p:option>
     
@@ -128,10 +128,10 @@
             <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
-    <p:option name="hyphenation" required="false" px:type="boolean" select="'false'">
+    <p:option name="hyphenation" required="false" px:type="boolean" select="'true'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Translation/formatting of text: Hyphenation</h2>
-            <p px:role="desc">When enabled, will automatically hyphenate text. **Not implemented**</p>
+            <p px:role="desc">When enabled, will automatically hyphenate text.</p>
         </p:documentation>
     </p:option>
     <p:option name="line-spacing" required="false" px:data-type="dtbook-to-pef:line-spacing" select="'single'">
@@ -384,32 +384,12 @@
         <p:with-option name="inner-margin" select="$inner-margin"/>
         <p:with-option name="outer-margin" select="$outer-margin"/>
         <p:with-option name="splitterMax" select="$maximum-number-of-pages"/>
-        <p:with-option name="dotify-options" select="$other"/>
+        <p:with-param port="parameters" name="duplex" select="$duplex"/>
+        <p:with-param port="parameters" name="hyphenate" select="$hyphenation"/>
         <!-- <p:with-option name="format" select="'pef'"/> -->
     </dotify:xml-to-obfl>
     
-    <p:choose>
-        <p:when test="$include-obfl='true'">
-            <p:store>
-                <p:input port="source">
-                    <p:pipe step="obfl" port="result"/>
-                </p:input>
-                <p:with-option name="href" select="concat($output-dir, $identifier, '.obfl')"/>
-            </p:store>
-        </p:when>
-        <p:otherwise>
-            <p:sink>
-                <p:input port="source">
-                    <p:empty/>
-                </p:input>
-            </p:sink>
-         </p:otherwise>
-    </p:choose>
-    
     <dotify:obfl-to-pef locale="sv-SE" mode="uncontracted">
-        <p:input port="source">
-            <p:pipe step="obfl" port="result"/>
-        </p:input>
         <p:with-option name="identifier" select="$identifier"/>
     </dotify:obfl-to-pef>
     
@@ -434,8 +414,26 @@
     <pef:store>
         <p:with-option name="output-dir" select="$output-dir"/>
         <p:with-option name="name" select="if ($identifier='') then ('result') else ($identifier)"/>
-        <p:with-option name="include-preview" select="'false'"/>
-        <p:with-option name="include-brf" select="'false'"/>
+        <p:with-option name="include-preview" select="$include-preview"/>
+        <p:with-option name="include-brf" select="$include-brf"/>
     </pef:store>
+    
+    <p:choose>
+        <p:when test="$include-obfl='true'">
+            <p:store>
+                <p:input port="source">
+                    <p:pipe step="obfl" port="result"/>
+                </p:input>
+                <p:with-option name="href" select="concat($output-dir, $identifier, '.obfl')"/>
+            </p:store>
+        </p:when>
+        <p:otherwise>
+            <p:sink>
+                <p:input port="source">
+                    <p:empty/>
+                </p:input>
+            </p:sink>
+         </p:otherwise>
+    </p:choose>
     
 </p:declare-step>
