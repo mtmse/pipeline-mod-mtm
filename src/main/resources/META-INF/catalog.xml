@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" xmlns:px="http://www.daisy.org/ns/pipeline">
+  <!-- scripts -->
   <uri name="http://www.mtm.se/pipeline/modules/braille/dtbook-to-pef.xpl" uri="../xml/dtbook-to-pef.xpl" px:script="true"/>
+  <!-- data-types -->
+  <uri name="http://www.mtm.se/pipeline/modules/braille/dtbook-to-pef/colophon-metadata-placement.xml"
+       uri="../data-types/colophon-metadata-placement.xml" px:data-type="true"/>
+  <uri name="http://www.mtm.se/pipeline/modules/braille/dtbook-to-pef/rear-cover-placement.xml"
+       uri="../data-types/rear-cover-placement.xml" px:data-type="true"/>
+  <!-- dependencies -->
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:css-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:dotify-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:dtbook-to-pef"/>

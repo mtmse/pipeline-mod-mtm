@@ -227,16 +227,14 @@
     <!-- ============ -->
     <!-- Page numbers -->
     <!-- ============ -->
-    <p:option name="show-braille-page-numbers" required="false" px:type="boolean" select="'false'">
+    <p:option name="show-braille-page-numbers" required="false" px:type="boolean" select="true()">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Page numbers: Show braille page numbers</h2>
-            <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
-    <p:option name="show-print-page-numbers" required="false" px:type="boolean" select="'false'">
+    <p:option name="show-print-page-numbers" required="false" px:type="boolean" select="true()">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Page numbers: Show print page numbers</h2>
-            <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
     <p:option name="force-braille-page-break" required="false" px:type="boolean" select="'false'">
@@ -249,10 +247,19 @@
     <!-- ================= -->
     <!-- Table of contents -->
     <!-- ================= -->
-    <p:option name="toc-depth" required="false" px:type="integer" select="'0'">
+    <p:option name="toc-depth" required="false" px:type="integer" select="6">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Table of contents: Table of contents depth</h2>
-            <p px:role="desc">The depth of the table of contents hierarchy to include. '0' means no table of contents. **Not implemented**</p>
+            <p px:role="desc">The depth of the table of contents hierarchy to include. '0' means no table of contents.</p>
+        </p:documentation>
+    </p:option>
+    <!--
+        TODO: also add to other scripts?
+    -->
+    <p:option name="volume-toc" required="false" px:type="boolean" select="'true'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Table of contents: Volume level table of contents</h2>
+            <p px:role="desc">Include a volume range table of contents at the beginning of every volume (except the first which always has a full table of contents).</p>
         </p:documentation>
     </p:option>
     
@@ -287,16 +294,14 @@
             <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
-    <p:option name="colophon-metadata-placement" required="false" px:type="string" select="''">
+    <p:option name="colophon-metadata-placement" required="false" px:data-type="mtm:colophon-metadata-placement" select="'end'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Placement of content: Colophon/metadata placement</h2>
-            <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
-    <p:option name="rear-cover-placement" required="false" px:type="string" select="''">
+    <p:option name="rear-cover-placement" required="false" px:data-type="mtm:rear-cover-placement" select="'end'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Placement of content: Rear cover placement</h2>
-            <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
     
@@ -386,6 +391,12 @@
         <p:with-option name="splitterMax" select="$maximum-number-of-pages"/>
         <p:with-param port="parameters" name="duplex" select="$duplex"/>
         <p:with-param port="parameters" name="hyphenate" select="$hyphenation"/>
+        <p:with-param port="parameters" name="toc-depth" select="$toc-depth"/>
+        <p:with-param port="parameters" name="volume-toc" select="$volume-toc"/>
+        <p:with-param port="parameters" name="show-braille-page-numbers" select="$show-braille-page-numbers"/>
+        <p:with-param port="parameters" name="show-print-page-numbers" select="$show-print-page-numbers"/>
+        <p:with-param port="parameters" name="colophon-metadata-placement" select="$colophon-metadata-placement"/>
+        <p:with-param port="parameters" name="rear-cover-placement" select="$rear-cover-placement"/>
         <!-- <p:with-option name="format" select="'pef'"/> -->
     </dotify:xml-to-obfl>
     
