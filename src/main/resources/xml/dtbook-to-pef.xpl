@@ -13,170 +13,424 @@
         <p px:role="desc">Transforms a DTBook (DAISY 3 XML) document into a PEF.</p>
     </p:documentation>
     
-    <p:input port="source" primary="true" px:name="source" px:media-type="application/x-dtbook+xml"/>
-    
-    <!-- 
-    <p:option name="include-preview" required="false" px:type="boolean" select="''">
-    	<p:documentation>
-			<h2 px:role="name">Include preview HTML</h2>
-			<p px:role="desc">Includes a preview HTML</p>
-		</p:documentation>
+    <!-- ============ -->
+    <!-- Main options -->
+    <!-- ============ -->
+    <p:input port="source" primary="true" px:name="source" px:media-type="application/x-dtbook+xml">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Input DTBook</h2>
+        </p:documentation>
+    </p:input>
+    <p:option name="ascii-table" required="false" px:type="string" select="''">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">ASCII braille table</h2>
+            <p px:role="desc">The ASCII braille table, used for example to render BRF files. **Not implemented**</p>
+        </p:documentation>
     </p:option>
-    <p:option name="include-brf" required="false" px:type="boolean" select="''">
-    	<p:documentation>
-			<h2 px:role="name">Include .brf</h2>
-			<p px:role="desc">Includes a brf-file.</p>
-		</p:documentation>
-    </p:option> -->
-    <p:option name="output-dir" required="true" px:output="result" px:type="anyDirURI"/>
-    <p:option name="identifier" required="true" px:type="string">
-    	<p:documentation>
-			<h2 px:role="name">Identifier</h2>
-			<p px:role="desc">The identifier for the resulting PEF-file.</p>
-		</p:documentation>
+    <p:option name="include-preview" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Include preview HTML</h2>
+            <p px:role="desc">Includes a preview HTML. **Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="include-brf" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Include .brf</h2>
+            <p px:role="desc">Includes a brf-file. **Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="include-obfl" required="false" px:type="boolean" select="'false'">
+        <p:documentation>
+            <h2 px:role="name">Include OBFL</h2>
+            <p px:role="desc">Keeps the intermediary OBFL-file for debugging.</p>
+        </p:documentation>
     </p:option>
     <!--
-		<p:documentation>
-			<h2 px:role="name"></h2>
-			<p px:role="desc"></p>
-		</p:documentation>
-	-->
-	<p:option name="keepCaptions" required="false" px:type="boolean" select="'true'">
+        TODO: also add to other scripts?
+    -->
+    <p:option name="identifier" required="true" px:type="string">
         <p:documentation>
-			<h2 px:role="name">Keep imggroup without prodnote</h2>
-        	<p px:role="desc">Keeps imggroup if value is true or if imagegroup contains a prodnote.</p>
+            <h2 px:role="name">Identifier</h2>
+            <p px:role="desc">The identifier for the resulting PEF-file.</p>
         </p:documentation>
     </p:option>
-	<p:option name="single-line-spacing" required="false" px:type="boolean" select="'true'">
-        <p:documentation>
-            <h2 px:role="name">Single line spacing</h2>
-        	<p px:role="desc">Select 'No' for double line spacing.</p>
-		</p:documentation>
-    </p:option>
-    <p:option name="rows" required="false" px:type="string" select="29">
-        <p:documentation>
-        	<h2 px:role="name">Rows</h2>
-        	<p px:role="desc">Number of rows.</p>
+    
+    <!-- =========== -->
+    <!-- Page layout -->
+    <!-- =========== -->
+    <!--
+        TODO: make name/description/behavior match with other scripts?
+    -->
+    <p:option name="page-width" required="false" px:type="integer" select="28">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Page layout: Columns</h2>
+            <p px:role="desc">Number of characters on a row.</p>
         </p:documentation>
     </p:option>
-    <p:option name="cols" required="false" px:type="string" select="28">
-        <p:documentation>
-        	<h2 px:role="name">Columns</h2>
-        	<p px:role="desc">Number of characters on a row.</p>
+    <!--
+        TODO: make name/description/behavior match with other scripts?
+    -->
+    <p:option name="page-height" required="false" px:type="integer" select="29">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Page layout: Rows</h2>
+            <p px:role="desc">Number of rows.</p>
         </p:documentation>
     </p:option>
-    <p:option name="inner-margin" required="false" px:type="string" select="2">
-        <p:documentation>
-            <h2 px:role="name">Inner margin</h2>
-        	<p px:role="desc">The inner margin size, counted in characters.</p>
+    <!--
+    <p:option name="left-margin" required="false" px:type="integer" select="0">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Page layout: Left margin</h2>
+            <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
-    <p:option name="outer-margin" required="false" px:type="string" select="2">
+    -->
+    <!--
+        TODO: also add to other scripts?
+    -->
+    <p:option name="inner-margin" required="false" px:type="integer" select="2">
         <p:documentation>
-			<h2 px:role="name">Outer margin</h2>
-			<p px:role="desc">The outer margin size, counted in characters.</p>
+            <h2 px:role="name">Page layout: Inner margin</h2>
+            <p px:role="desc">The inner margin size, counted in characters.</p>
         </p:documentation>
     </p:option>
-    <!-- 
-    <p:option name="splitterMax" required="false" px:type="string" select="50">
+    <!--
+        TODO: also add to other scripts?
+    -->
+    <p:option name="outer-margin" required="false" px:type="integer" select="2">
         <p:documentation>
-			<h2 px:role="name">Splitter max</h2>
-			<p px:role="desc">The maximum number of sheets in a volume.</p>
+            <h2 px:role="name">Page layout: Outer margin</h2>
+            <p px:role="desc">The outer margin size, counted in characters.</p>
         </p:documentation>
-    </p:option>  -->
-    <p:option name="include-obfl" required="false" px:type="boolean" select="'false'">
-		<p:documentation>
-			<h2 px:role="name">Include OBFL</h2>
-			<p px:role="desc">Keeps the intermediary OBFL-file for debugging.</p>
-		</p:documentation>
     </p:option>
-    <p:option name="query" required="false" px:type="string" select="''">
-    	<p:documentation>
-    	    <h2 px:role="name">Advanced options</h2>
-        	<p px:role="desc">Additional options using the following syntax: (name1:value1)(name2:value2)...</p>
-    	</p:documentation>
+    <p:option name="duplex" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Page layout: Duplex</h2>
+            <p px:role="desc">When enabled, will print on both sides of the paper. **Not implemented**</p>
+        </p:documentation>
     </p:option>
-
+    
+    <!-- =============== -->
+    <!-- Headers/footers -->
+    <!-- =============== -->
+    <p:option name="levels-in-footer" required="false" px:type="integer" select="'6'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Headers/footers: Levels in footer</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    
+    <!-- ============================== -->
+    <!-- Translation/formatting of text -->
+    <!-- ============================== -->
+    <p:option name="main-document-language" required="false" px:type="string" select="''">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Translation/formatting of text: Main document language</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="hyphenation" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Translation/formatting of text: Hyphenation</h2>
+            <p px:role="desc">When enabled, will automatically hyphenate text. **Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="line-spacing" required="false" px:data-type="dtbook-to-pef:line-spacing" select="'single'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Translation/formatting of text: Line spacing</h2>
+            <p px:role="desc">'single' or 'double' line spacing.</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="tab-width" required="false" px:type="integer" select="'4'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Translation/formatting of text: Tab width</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="capital-letters" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Translation/formatting of text: Capital letters</h2>
+            <p px:role="desc">When enabled, will indicate capital letters. **Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="accented-letters" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Translation/formatting of text: Accented letters</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="polite-forms" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Translation/formatting of text: Polite forms</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="downshift-ordinal-numbers" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Translation/formatting of text: Downshift ordinal numbers</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    
+    <!-- ============== -->
+    <!-- Block elements -->
+    <!-- ============== -->
+    <!--
+        TODO: make name/description/behavior match with other scripts?
+    -->
+    <p:option name="include-captions" required="false" px:type="boolean" select="'true'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Block elements: Keep imggroup without prodnote</h2>
+            <p px:role="desc">Keeps imggroup if value is true or if imagegroup contains a prodnote.</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="include-images" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Block elements: Include images</h2>
+            <p px:role="desc">When enabled, will include the alt text of the images. When disabled, the images will be completely removed. **Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="include-image-groups" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Block elements: Include image groups</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="include-line-groups" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Block elements: Include line groups</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    
+    <!-- =============== -->
+    <!-- Inline elements -->
+    <!-- =============== -->
+    <p:option name="text-level-formatting" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Inline elements: Text-level formatting (emphasis, strong)</h2>
+            <p px:role="desc">When enabled, text that is in bold or italics in the print version will be rendered in bold or italics in the braille version as well. **Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="include-note-references" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Inline elements: Include note references</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="include-production-notes" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Inline elements: Include production notes</h2>
+            <p px:role="desc">When enabled, production notes are included in the content. **Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    
+    <!-- ============ -->
+    <!-- Page numbers -->
+    <!-- ============ -->
+    <p:option name="show-braille-page-numbers" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Page numbers: Show braille page numbers</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="show-print-page-numbers" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Page numbers: Show print page numbers</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="force-braille-page-break" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Page numbers: Force braille page break</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    
+    <!-- ================= -->
+    <!-- Table of contents -->
+    <!-- ================= -->
+    <p:option name="toc-depth" required="false" px:type="integer" select="'0'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Table of contents: Table of contents depth</h2>
+            <p px:role="desc">The depth of the table of contents hierarchy to include. '0' means no table of contents. **Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    
+    <!-- ================= -->
+    <!-- Generated content -->
+    <!-- ================= -->
+    <p:option name="ignore-document-title" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Generated content: Ignore document title</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="include-symbols-list" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Generated content: Include symbols list</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="choice-of-colophon" required="false" px:type="string" select="''">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Generated content: Choice of colophon</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    
+    <!-- ==================== -->
+    <!-- Placement of content -->
+    <!-- ==================== -->
+    <p:option name="footnotes-placement" required="false" px:type="string" select="''">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Placement of content: Footnotes placement</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="colophon-metadata-placement" required="false" px:type="string" select="''">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Placement of content: Colophon/metadata placement</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="rear-cover-placement" required="false" px:type="string" select="''">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Placement of content: Rear cover placement</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    
+    <!-- ======= -->
+    <!-- Volumes -->
+    <!-- ======= -->
+    <p:option name="number-of-pages" required="false" px:type="integer" select="'50'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Volumes: Number of pages</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    <!--
+        TODO: make name/description/behavior match with other scripts?
+    -->
+    <p:option name="maximum-number-of-pages" required="false" px:type="integer" select="50">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Volumes: Splitter max</h2>
+            <p px:role="desc">The maximum number of sheets in a volume.</p>
+        </p:documentation>
+    </p:option>
+    <p:option name="minimum-number-of-pages" required="false" px:type="integer" select="30">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Volumes: Minimum number of pages</h2>
+            <p px:role="desc">**Not implemented**</p>
+        </p:documentation>
+    </p:option>
+    
+    <!-- ===== -->
+    <!-- Other -->
+    <!-- ===== -->
+    <!--
+        TODO: also add to other scripts?
+    -->
+    <p:option name="other" required="false" px:type="string" select="''">
+        <p:documentation>
+            <h2 px:role="name">Other: Advanced options</h2>
+            <p px:role="desc">Additional options using the following syntax: (name1:value1)(name2:value2)...</p>
+        </p:documentation>
+    </p:option>
+    
+    <!-- ======= -->
+    <!-- Outputs -->
+    <!-- ======= -->
+    <p:option name="output-dir" required="true" px:output="result" px:type="anyDirURI">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Output directory</h2>
+            <p px:role="desc">Directory for storing result files.</p>
+        </p:documentation>
+    </p:option>
+    
+    <!-- ======= -->
+    <!-- Imports -->
+    <!-- ======= -->
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dotify-utils/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl"/>
-
+    
     <p:xslt>
-		<p:input port="stylesheet">
-			<p:document href="move-cover-text.xsl"/>
-		</p:input>
-		<p:input port="parameters">
-			<p:empty/>
-		</p:input>
-	</p:xslt>
-
+        <p:input port="stylesheet">
+            <p:document href="move-cover-text.xsl"/>
+        </p:input>
+        <p:input port="parameters">
+            <p:empty/>
+        </p:input>
+    </p:xslt>
+    
     <p:xslt>
-		<p:input port="stylesheet">
-			<p:document href="punktinfo.xsl"/>
-		</p:input>
+        <p:input port="stylesheet">
+            <p:document href="punktinfo.xsl"/>
+        </p:input>
         <p:with-param name="identifier" select="$identifier"/>
-        <!-- Negative form is used, because keep is a better choice for unexpected input -->
-        <p:with-param name="captions" select="if ($keepCaptions='false') then ('remove') else ('keep')"></p:with-param>
-		<p:input port="parameters">
-		      <p:empty/>
-		</p:input>
-	</p:xslt>
+        <!-- keep is a better choice for unexpected input -->
+        <p:with-param name="captions" select="if ($include-captions='false') then ('remove') else ('keep')"></p:with-param>
+        <p:input port="parameters">
+              <p:empty/>
+        </p:input>
+    </p:xslt>
     
     <dotify:xml-to-obfl locale="sv-SE" name="obfl">
         <!-- <p:with-option name="identifier" select="$identifier"/> -->
-        <p:with-option name="rows" select="if ($rows='') then (29) else ($rows)"/>
-        <p:with-option name="cols" select="if ($cols='') then (28) else ($cols)"/>
-        <!-- Negative form is used, because single line spacing is a better choice for unexpected input -->
-        <p:with-option name="rowgap" select="if ($single-line-spacing='false') then (4) else (0)"/>
-        <p:with-option name="inner-margin" select="if ($inner-margin='') then (2) else ($inner-margin)"/>
-        <p:with-option name="outer-margin" select="if ($outer-margin='') then (2) else ($outer-margin)"/>
-        <p:with-option name="splitterMax" select="50"/> <!--  if ($splitterMax='') then (50) else ($splitterMax)"/> -->
-        <p:with-option name="dotify-options" select="$query"/>
+        <p:with-option name="rows" select="$page-height"/>
+        <p:with-option name="cols" select="$page-width"/>
+        <!-- single line spacing is a better choice for unexpected input -->
+        <p:with-option name="rowgap" select="if ($line-spacing='double') then 4 else 0"/>
+        <p:with-option name="inner-margin" select="$inner-margin"/>
+        <p:with-option name="outer-margin" select="$outer-margin"/>
+        <p:with-option name="splitterMax" select="$maximum-number-of-pages"/>
+        <p:with-option name="dotify-options" select="$other"/>
         <!-- <p:with-option name="format" select="'pef'"/> -->
     </dotify:xml-to-obfl>
-
+    
     <p:choose>
-    	<p:when test="$include-obfl='true'">
-		    <p:store>
-				<p:input port="source">
-					<p:pipe step="obfl" port="result"/>
-				</p:input>
-				<p:with-option name="href" select="concat($output-dir, $identifier, '.obfl')"/>
-		    </p:store>
-    	</p:when>
-		<p:otherwise>
-			<p:sink>
-				<p:input port="source">
-					<p:empty/>
-				</p:input>
-			</p:sink>
-		 </p:otherwise>
+        <p:when test="$include-obfl='true'">
+            <p:store>
+                <p:input port="source">
+                    <p:pipe step="obfl" port="result"/>
+                </p:input>
+                <p:with-option name="href" select="concat($output-dir, $identifier, '.obfl')"/>
+            </p:store>
+        </p:when>
+        <p:otherwise>
+            <p:sink>
+                <p:input port="source">
+                    <p:empty/>
+                </p:input>
+            </p:sink>
+         </p:otherwise>
     </p:choose>
-
+    
     <dotify:obfl-to-pef locale="sv-SE" mode="uncontracted">
-    	<p:input port="source">
-    		<p:pipe step="obfl" port="result"/> 
-    	</p:input>
-    	<p:with-option name="identifier" select="$identifier"/> 
+        <p:input port="source">
+            <p:pipe step="obfl" port="result"/>
+        </p:input>
+        <p:with-option name="identifier" select="$identifier"/>
     </dotify:obfl-to-pef>
-
+    
     <p:xslt>
-		<p:input port="stylesheet">
-			<p:document href="pef-meta-finalizer.xsl"/>
-		</p:input>
-		<p:input port="parameters">
-			<p:empty/>
-		</p:input>
-	</p:xslt>
-	
-	<p:xslt>
-		<p:input port="stylesheet">
-			<p:document href="pef-section-patch.xsl"/>
-		</p:input>
-		<p:input port="parameters">
-			<p:empty/>
-		</p:input>
-	</p:xslt>
-
+        <p:input port="stylesheet">
+            <p:document href="pef-meta-finalizer.xsl"/>
+        </p:input>
+        <p:input port="parameters">
+            <p:empty/>
+        </p:input>
+    </p:xslt>
+    
+    <p:xslt>
+        <p:input port="stylesheet">
+            <p:document href="pef-section-patch.xsl"/>
+        </p:input>
+        <p:input port="parameters">
+            <p:empty/>
+        </p:input>
+    </p:xslt>
+    
     <pef:store>
         <p:with-option name="output-dir" select="$output-dir"/>
         <p:with-option name="name" select="if ($identifier='') then ('result') else ($identifier)"/>

@@ -57,14 +57,14 @@
       <artifactId>dotify.text.impl</artifactId>
       <scope>runtime</scope>
     </dependency>
-    <!--
-        test dependencies
-    -->
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
       <artifactId>dtbook-to-pef</artifactId>
-      <scope>test</scope>
+      <scope>runtime</scope>
     </dependency>
+    <!--
+        test dependencies
+    -->
     <dependency>
       <groupId>org.daisy.pipeline.modules.braille</groupId>
       <artifactId>dotify-formatter</artifactId>
