@@ -134,7 +134,19 @@
             <p px:role="desc">When enabled, will automatically hyphenate text.</p>
         </p:documentation>
     </p:option>
-    <p:option name="line-spacing" required="false" px:data-type="dtbook-to-pef:line-spacing" select="'single'">
+    <p:option name="line-spacing" required="false" select="'single'">
+        <p:pipeinfo>
+            <px:data-type>
+                <choice>
+                    <documentation xmlns="http://relaxng.org/ns/compatibility/annotations/1.0" xml:lang="en">
+                        <value>Single</value>
+                        <value>Double</value>
+                    </documentation>
+                    <value>single</value>
+                    <value>double</value>
+                </choice>
+            </px:data-type>
+        </p:pipeinfo>
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Translation/formatting of text: Line spacing</h2>
             <p px:role="desc">'single' or 'double' line spacing.</p>
@@ -294,12 +306,28 @@
             <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
-    <p:option name="colophon-metadata-placement" required="false" px:data-type="mtm:colophon-metadata-placement" select="'end'">
+    <p:option name="colophon-metadata-placement" required="false" select="'end'">
+        <p:pipeinfo>
+            <px:data-type>
+                <choice>
+                    <value>begin</value>
+                    <value>end</value>
+                </choice>
+            </px:data-type>
+        </p:pipeinfo>
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Placement of content: Colophon/metadata placement</h2>
         </p:documentation>
     </p:option>
-    <p:option name="rear-cover-placement" required="false" px:data-type="mtm:rear-cover-placement" select="'end'">
+    <p:option name="rear-cover-placement" required="false" select="'end'">
+        <p:pipeinfo>
+            <px:data-type>
+                <choice>
+                    <value>begin</value>
+                    <value>end</value>
+                </choice>
+            </px:data-type>
+        </p:pipeinfo>
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Placement of content: Rear cover placement</h2>
         </p:documentation>
@@ -346,10 +374,22 @@
     <!-- ======= -->
     <!-- Outputs -->
     <!-- ======= -->
-    <p:option name="output-dir" required="true" px:output="result" px:type="anyDirURI">
+    <p:option name="pef-output-dir" required="true" px:output="result" px:type="anyDirURI">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
-            <h2 px:role="name">Output directory</h2>
-            <p px:role="desc">Directory for storing result files.</p>
+            <h2 px:role="name">PEF</h2>
+            <h2 px:role="desc">Output directory for the PEF</h2>
+        </p:documentation>
+    </p:option>
+    <p:option name="brf-output-dir" required="false" px:output="result" px:type="anyDirURI" select="''">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">BRF</h2>
+            <h2 px:role="desc">Output directory for the BRF</h2>
+        </p:documentation>
+    </p:option>
+    <p:option name="preview-output-dir" required="false" px:output="result" px:type="anyDirURI" select="''">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Preview</h2>
+            <h2 px:role="desc">Output directory for the HTML preview</h2>
         </p:documentation>
     </p:option>
     
@@ -361,7 +401,7 @@
     
     <p:xslt>
         <p:input port="stylesheet">
-            <p:document href="move-cover-text.xsl"/>
+            <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/move-cover-text.xsl"/>
         </p:input>
         <p:input port="parameters">
             <p:empty/>
@@ -370,7 +410,7 @@
     
     <p:xslt>
         <p:input port="stylesheet">
-            <p:document href="punktinfo.xsl"/>
+            <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/punktinfo.xsl"/>
         </p:input>
         <p:with-param name="identifier" select="$identifier"/>
         <!-- keep is a better choice for unexpected input -->
@@ -406,7 +446,7 @@
     
     <p:xslt>
         <p:input port="stylesheet">
-            <p:document href="pef-meta-finalizer.xsl"/>
+            <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/pef-meta-finalizer.xsl"/>
         </p:input>
         <p:input port="parameters">
             <p:empty/>
@@ -415,19 +455,25 @@
     
     <p:xslt>
         <p:input port="stylesheet">
-            <p:document href="pef-section-patch.xsl"/>
+            <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/pef-section-patch.xsl"/>
         </p:input>
         <p:input port="parameters">
             <p:empty/>
         </p:input>
     </p:xslt>
     
-    <pef:store>
-        <p:with-option name="output-dir" select="$output-dir"/>
-        <p:with-option name="name" select="if ($identifier='') then ('result') else ($identifier)"/>
-        <p:with-option name="include-preview" select="$include-preview"/>
-        <p:with-option name="include-brf" select="$include-brf"/>
-    </pef:store>
+    <p:group>
+        <p:variable name="name" select="if ($identifier='') then ('result') else ($identifier)"/>
+        <pef:store>
+            <p:with-option name="href" select="concat($pef-output-dir,'/',$name,'.pef')"/>
+            <p:with-option name="preview-href" select="if ($include-preview='true' and $preview-output-dir!='')
+                                                       then concat($preview-output-dir,'/',$name,'.pef.html')
+                                                       else ''"/>
+            <p:with-option name="brf-href" select="if ($include-brf='true' and $brf-output-dir!='')
+                                                   then concat($brf-output-dir,'/',$name,'.brf')
+                                                   else ''"/>
+        </pef:store>
+    </p:group>
     
     <p:choose>
         <p:when test="$include-obfl='true'">
@@ -435,7 +481,7 @@
                 <p:input port="source">
                     <p:pipe step="obfl" port="result"/>
                 </p:input>
-                <p:with-option name="href" select="concat($output-dir, $identifier, '.obfl')"/>
+                <p:with-option name="href" select="concat($pef-output-dir, $identifier, '.obfl')"/>
             </p:store>
         </p:when>
         <p:otherwise>

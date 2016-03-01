@@ -2,15 +2,19 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" xmlns:px="http://www.daisy.org/ns/pipeline">
   <!-- scripts -->
   <uri name="http://www.mtm.se/pipeline/modules/braille/dtbook-to-pef.xpl" uri="../xml/dtbook-to-pef.xpl" px:script="true"/>
-  <!-- data-types -->
-  <uri name="http://www.mtm.se/pipeline/modules/braille/dtbook-to-pef/colophon-metadata-placement.xml"
-       uri="../data-types/colophon-metadata-placement.xml" px:data-type="true"/>
-  <uri name="http://www.mtm.se/pipeline/modules/braille/dtbook-to-pef/rear-cover-placement.xml"
-       uri="../data-types/rear-cover-placement.xml" px:data-type="true"/>
+  
+  <!--
+      internal resources added to the catalog for now until we find a proper solution for
+      https://github.com/daisy/pipeline-mod-braille/pull/79#discussion-diff-54276962
+  -->
+  <uri name="http://www.mtm.se/pipeline/modules/braille/internal/move-cover-text.xsl" uri="../xml/move-cover-text.xsl"/>
+  <uri name="http://www.mtm.se/pipeline/modules/braille/internal/punktinfo.xsl" uri="../xml/punktinfo.xsl"/>
+  <uri name="http://www.mtm.se/pipeline/modules/braille/internal/pef-meta-finalizer.xsl" uri="../xml/pef-meta-finalizer.xsl"/>
+  <uri name="http://www.mtm.se/pipeline/modules/braille/internal/pef-section-patch.xsl" uri="../xml/pef-section-patch.xsl"/>
+  
   <!-- dependencies -->
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:css-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:dotify-utils"/>
-  <nextCatalog catalog="org:daisy:pipeline:modules:braille:dtbook-to-pef"/>
   <nextCatalog catalog="org:daisy:dotify:translator:impl"/>
   <nextCatalog catalog="org:daisy:dotify:hyphenator:impl"/>
 </catalog>

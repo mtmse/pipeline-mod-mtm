@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<choice id="mtm:colophon-metadata-placement">
-	<value>begin</value>
-	<value>end</value>
-</choice>
