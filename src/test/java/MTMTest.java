@@ -82,6 +82,7 @@ public class MTMTest {
 				brailleModule("dotify-utils"),
 				brailleModule("dotify-formatter"),
 				brailleModule("pef-utils"),
+				brailleModule("dtbook-to-pef"),
 				mavenBundle("org.daisy.dotify:dotify.translator.impl:?"),
 				mavenBundle("org.daisy.dotify:dotify.hyphenator.impl:?"),
 				mavenBundle("org.daisy.dotify:dotify.text.impl:?"),
