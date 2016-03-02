@@ -61,7 +61,7 @@
     <!--
         TODO: make name/description/behavior match with other scripts?
     -->
-    <p:option name="page-width" required="false" px:type="integer" select="28">
+    <p:option name="page-width" required="false" px:type="integer" select="'28'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Page layout: Columns</h2>
             <p px:role="desc">Number of characters on a row.</p>
@@ -70,14 +70,14 @@
     <!--
         TODO: make name/description/behavior match with other scripts?
     -->
-    <p:option name="page-height" required="false" px:type="integer" select="29">
+    <p:option name="page-height" required="false" px:type="integer" select="'29'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Page layout: Rows</h2>
             <p px:role="desc">Number of rows.</p>
         </p:documentation>
     </p:option>
     <!--
-    <p:option name="left-margin" required="false" px:type="integer" select="0">
+    <p:option name="left-margin" required="false" px:type="integer" select="'0'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Page layout: Left margin</h2>
             <p px:role="desc">**Not implemented**</p>
@@ -87,7 +87,7 @@
     <!--
         TODO: also add to other scripts?
     -->
-    <p:option name="inner-margin" required="false" px:type="integer" select="2">
+    <p:option name="inner-margin" required="false" px:type="integer" select="'2'">
         <p:documentation>
             <h2 px:role="name">Page layout: Inner margin</h2>
             <p px:role="desc">The inner margin size, counted in characters.</p>
@@ -96,7 +96,7 @@
     <!--
         TODO: also add to other scripts?
     -->
-    <p:option name="outer-margin" required="false" px:type="integer" select="2">
+    <p:option name="outer-margin" required="false" px:type="integer" select="'2'">
         <p:documentation>
             <h2 px:role="name">Page layout: Outer margin</h2>
             <p px:role="desc">The outer margin size, counted in characters.</p>
@@ -239,12 +239,12 @@
     <!-- ============ -->
     <!-- Page numbers -->
     <!-- ============ -->
-    <p:option name="show-braille-page-numbers" required="false" px:type="boolean" select="true()">
+    <p:option name="show-braille-page-numbers" required="false" px:type="boolean" select="'true'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Page numbers: Show braille page numbers</h2>
         </p:documentation>
     </p:option>
-    <p:option name="show-print-page-numbers" required="false" px:type="boolean" select="true()">
+    <p:option name="show-print-page-numbers" required="false" px:type="boolean" select="'true'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Page numbers: Show print page numbers</h2>
         </p:documentation>
@@ -259,7 +259,7 @@
     <!-- ================= -->
     <!-- Table of contents -->
     <!-- ================= -->
-    <p:option name="toc-depth" required="false" px:type="integer" select="6">
+    <p:option name="toc-depth" required="false" px:type="integer" select="'6'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Table of contents: Table of contents depth</h2>
             <p px:role="desc">The depth of the table of contents hierarchy to include. '0' means no table of contents.</p>
@@ -345,13 +345,13 @@
     <!--
         TODO: make name/description/behavior match with other scripts?
     -->
-    <p:option name="maximum-number-of-pages" required="false" px:type="integer" select="50">
+    <p:option name="maximum-number-of-pages" required="false" px:type="integer" select="'50'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Volumes: Splitter max</h2>
             <p px:role="desc">The maximum number of sheets in a volume.</p>
         </p:documentation>
     </p:option>
-    <p:option name="minimum-number-of-pages" required="false" px:type="integer" select="30">
+    <p:option name="minimum-number-of-pages" required="false" px:type="integer" select="'30'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Volumes: Minimum number of pages</h2>
             <p px:role="desc">**Not implemented**</p>
