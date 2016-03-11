@@ -21,12 +21,14 @@
             <h2 px:role="name">Input DTBook</h2>
         </p:documentation>
     </p:input>
+    <!--
     <p:option name="ascii-table" required="false" px:type="string" select="''">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">ASCII braille table</h2>
             <p px:role="desc">The ASCII braille table, used for example to render BRF files. **Not implemented**</p>
         </p:documentation>
     </p:option>
+    -->
     <p:option name="include-preview" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Include preview HTML</h2>
@@ -59,7 +61,9 @@
     <!-- Page layout -->
     <!-- =========== -->
     <!--
-        TODO: make name/description/behavior match with other scripts?
+        TODO: make name/description/behavior match with other scripts? currently behavior is that
+        actual width of PEF is page-width + inner-margin + outer-margin, while in other scripts
+        actual width is determined by page-width only
     -->
     <p:option name="page-width" required="false" px:type="integer" select="'28'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
@@ -112,22 +116,26 @@
     <!-- =============== -->
     <!-- Headers/footers -->
     <!-- =============== -->
+    <!--
     <p:option name="levels-in-footer" required="false" px:type="integer" select="'6'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Headers/footers: Levels in footer</h2>
             <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
+    -->
     
     <!-- ============================== -->
     <!-- Translation/formatting of text -->
     <!-- ============================== -->
+    <!--
     <p:option name="main-document-language" required="false" px:type="string" select="''">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Translation/formatting of text: Main document language</h2>
             <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
+    -->
     <p:option name="hyphenation" required="false" px:type="boolean" select="'true'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Translation/formatting of text: Hyphenation</h2>
@@ -152,34 +160,18 @@
             <p px:role="desc">'single' or 'double' line spacing.</p>
         </p:documentation>
     </p:option>
+    <!--
     <p:option name="tab-width" required="false" px:type="integer" select="'4'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Translation/formatting of text: Tab width</h2>
             <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
+    -->
     <p:option name="capital-letters" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Translation/formatting of text: Capital letters</h2>
             <p px:role="desc">When enabled, will indicate capital letters. **Not implemented**</p>
-        </p:documentation>
-    </p:option>
-    <p:option name="accented-letters" required="false" px:type="boolean" select="'false'">
-        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
-            <h2 px:role="name">Translation/formatting of text: Accented letters</h2>
-            <p px:role="desc">**Not implemented**</p>
-        </p:documentation>
-    </p:option>
-    <p:option name="polite-forms" required="false" px:type="boolean" select="'false'">
-        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
-            <h2 px:role="name">Translation/formatting of text: Polite forms</h2>
-            <p px:role="desc">**Not implemented**</p>
-        </p:documentation>
-    </p:option>
-    <p:option name="downshift-ordinal-numbers" required="false" px:type="boolean" select="'false'">
-        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
-            <h2 px:role="name">Translation/formatting of text: Downshift ordinal numbers</h2>
-            <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
     
@@ -191,10 +183,13 @@
     -->
     <p:option name="include-captions" required="false" px:type="boolean" select="'true'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
-            <h2 px:role="name">Block elements: Keep imggroup without prodnote</h2>
-            <p px:role="desc">Keeps imggroup if value is true or if imagegroup contains a prodnote.</p>
+            <h2 px:role="name">Block elements: Include image captions</h2>
+            <p px:role="desc">When enabled, will include captions for images.
+
+When disabled, images will only be rendered if they have a prodnote.</p>
         </p:documentation>
     </p:option>
+    <!--
     <p:option name="include-images" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Block elements: Include images</h2>
@@ -207,6 +202,7 @@
             <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
+    -->
     <p:option name="include-line-groups" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Block elements: Include line groups</h2>
@@ -223,12 +219,14 @@
             <p px:role="desc">When enabled, text that is in bold or italics in the print version will be rendered in bold or italics in the braille version as well. **Not implemented**</p>
         </p:documentation>
     </p:option>
+    <!--
     <p:option name="include-note-references" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Inline elements: Include note references</h2>
             <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
+    -->
     <p:option name="include-production-notes" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Inline elements: Include production notes</h2>
@@ -249,12 +247,14 @@
             <h2 px:role="name">Page numbers: Show print page numbers</h2>
         </p:documentation>
     </p:option>
+    <!--
     <p:option name="force-braille-page-break" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Page numbers: Force braille page break</h2>
             <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
+    -->
     
     <!-- ================= -->
     <!-- Table of contents -->
@@ -278,6 +278,7 @@
     <!-- ================= -->
     <!-- Generated content -->
     <!-- ================= -->
+    <!--
     <p:option name="ignore-document-title" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Generated content: Ignore document title</h2>
@@ -296,16 +297,19 @@
             <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
+    -->
     
     <!-- ==================== -->
     <!-- Placement of content -->
     <!-- ==================== -->
+    <!--
     <p:option name="footnotes-placement" required="false" px:type="string" select="''">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Placement of content: Footnotes placement</h2>
             <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
+    -->
     <p:option name="colophon-metadata-placement" required="false" select="'end'">
         <p:pipeinfo>
             <px:data-type>
@@ -336,27 +340,28 @@
     <!-- ======= -->
     <!-- Volumes -->
     <!-- ======= -->
+    <!--
     <p:option name="number-of-pages" required="false" px:type="integer" select="'50'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Volumes: Number of pages</h2>
             <p px:role="desc">**Not implemented**</p>
         </p:documentation>
     </p:option>
-    <!--
-        TODO: make name/description/behavior match with other scripts?
     -->
     <p:option name="maximum-number-of-pages" required="false" px:type="integer" select="'50'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
-            <h2 px:role="name">Volumes: Splitter max</h2>
+            <h2 px:role="name">Volumes: Maximum number of pages</h2>
             <p px:role="desc">The maximum number of sheets in a volume.</p>
         </p:documentation>
     </p:option>
+    <!--
     <p:option name="minimum-number-of-pages" required="false" px:type="integer" select="'30'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Volumes: Minimum number of pages</h2>
-            <p px:role="desc">**Not implemented**</p>
+            <p px:role="desc">The minimum number of sheets in a volume. **Not implemented**</p>
         </p:documentation>
     </p:option>
+    -->
     
     <!-- ===== -->
     <!-- Other -->
