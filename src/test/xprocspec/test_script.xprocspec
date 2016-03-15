@@ -36,7 +36,7 @@
       <x:option name="include-obfl" select="'false'"/>
     </x:call>
     <x:context label="pef">
-      <x:document type="file" base-uri="temp-dir" href="output-dir/P00000.pef"/>
+      <x:document type="file" base-uri="temp-dir" href="output-dir/P00000/P00000.pef"/>
     </x:context>
     <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
       <x:document type="inline">

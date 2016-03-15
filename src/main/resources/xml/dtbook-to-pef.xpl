@@ -50,10 +50,19 @@
     <!--
         TODO: also add to other scripts?
     -->
-    <p:option name="identifier" required="true" px:type="string">
+    <p:option name="identifier" px:type="string" select="'P00000'">
+        <p:pipeinfo>
+            <px:data-type>
+                <data type="string">
+                    <param name="pattern">P[0-9]{5}</param>
+                </data>
+            </px:data-type>
+        </p:pipeinfo>
         <p:documentation>
             <h2 px:role="name">Identifier</h2>
-            <p px:role="desc">The identifier for the resulting PEF-file.</p>
+            <p px:role="desc">The identifier for the resulting PEF-file.
+
+Must be the letter "P" and 5 digits.</p>
         </p:documentation>
     </p:option>
     
@@ -467,18 +476,15 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         </p:input>
     </p:xslt>
     
-    <p:group>
-        <p:variable name="name" select="if ($identifier='') then ('result') else ($identifier)"/>
-        <pef:store>
-            <p:with-option name="href" select="concat($pef-output-dir,'/',$name,'.pef')"/>
-            <p:with-option name="preview-href" select="if ($include-preview='true' and $preview-output-dir!='')
-                                                       then concat($preview-output-dir,'/',$name,'.pef.html')
-                                                       else ''"/>
-            <p:with-option name="brf-href" select="if ($include-brf='true' and $brf-output-dir!='')
-                                                   then concat($brf-output-dir,'/',$name,'.brf')
+    <pef:store>
+        <p:with-option name="href" select="concat($pef-output-dir,'/',$identifier,'/',$identifier,'.pef')"/>
+        <p:with-option name="preview-href" select="if ($include-preview='true' and $preview-output-dir!='')
+                                                   then concat($preview-output-dir,'/',$identifier,'.pef.html')
                                                    else ''"/>
-        </pef:store>
-    </p:group>
+        <p:with-option name="brf-href" select="if ($include-brf='true' and $brf-output-dir!='')
+                                               then concat($brf-output-dir,'/',$identifier,'.brf')
+                                               else ''"/>
+    </pef:store>
     
     <p:choose>
         <p:when test="$include-obfl='true'">
@@ -486,7 +492,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
                 <p:input port="source">
                     <p:pipe step="obfl" port="result"/>
                 </p:input>
-                <p:with-option name="href" select="concat($pef-output-dir, $identifier, '.obfl')"/>
+                <p:with-option name="href" select="concat($pef-output-dir,'/',$identifier,'/',$identifier,'.obfl')"/>
             </p:store>
         </p:when>
         <p:otherwise>
