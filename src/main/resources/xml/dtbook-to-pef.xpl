@@ -190,7 +190,7 @@ Must be the letter "P" and 5 digits.</p>
     <!--
         TODO: make name/description/behavior match with other scripts?
     -->
-    <p:option name="include-captions" required="false" px:type="boolean" select="'true'">
+    <p:option name="include-captions" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Block elements: Include image captions</h2>
             <p px:role="desc">When enabled, will include captions for images.
