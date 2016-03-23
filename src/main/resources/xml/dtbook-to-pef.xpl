@@ -236,12 +236,14 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         </p:documentation>
     </p:option>
     -->
-    <p:option name="include-production-notes" required="false" px:type="boolean" select="'false'">
+    <!--
+    <p:option name="include-producers-notes" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
-            <h2 px:role="name">Inline elements: Include production notes</h2>
-            <p px:role="desc">When enabled, production notes are included in the content. **Not implemented**</p>
+            <h2 px:role="name">Inline elements: Include producer's notes</h2>
+            <p px:role="desc">When enabled, producer's notes are included in the content. **Not implemented**</p>
         </p:documentation>
     </p:option>
+    -->
     
     <!-- ============ -->
     <!-- Page numbers -->
