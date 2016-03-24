@@ -50,7 +50,7 @@
     <!--
         TODO: also add to other scripts?
     -->
-    <p:option name="identifier" px:type="string" select="'P00000'">
+    <p:option name="identifier" px:type="string" required="true">
         <p:pipeinfo>
             <px:data-type>
                 <data type="string">
