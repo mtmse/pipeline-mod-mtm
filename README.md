@@ -1,4 +1,7 @@
 # pipeline-mod-mtm
+
+[![Build Status](https://travis-ci.org/snaekobbi/pipeline-mod-mtm.png?branch=master)](https://travis-ci.org/snaekobbi/pipeline-mod-mtm)
+
 MTM specific modules for the DAISY Pipeline 2
 
 ## Release procedure

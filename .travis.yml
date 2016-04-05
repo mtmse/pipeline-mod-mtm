@@ -1,0 +1,25 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+# configure the Maven environment
+before_install:
+  - source <(curl -fsSL https://raw.github.com/daisy/maven-parents/travis/before_install)
+
+# main task, run the verify goal
+script: mvn verify
+
+# if the build succeeds, deploy the artifact (tests are skipped)
+after_success: 
+  - source <(curl -fsSL https://raw.github.com/daisy/maven-parents/travis/after_success)
+
+# whitelist; only deploy master branch
+branches:
+  only:
+  - master
+
+env:
+  global:
+  - secure: UXmRyxtgTc/yOSKMDtbV/OeaFkBEsqAMWxsfxfok/toFdH4pCq8G+oPswFeiJCJPl3rkJwgMcSKA5KqYMddASjHWEGSVRa/SyXq0Ugyq7Vcxfp+ANVNP4nLbQkPRo7euE7NEaUdz215xYXquPM7Cf7fkEIOsS/opmK3sqJPD2r7t7bmaxmx2mppzakSzfOG24xCogUq94zKg/k1Q3sr5+ueW1zBKGK3JCjb3TNWRScE0qvVPtwkZJg/cbi3qjmWdhwxK/wIUBiS3my5SzFRyQ3kbeVkqwmssWYGHUNkNs7oBOF8pGkUhh7rEnFQ7gs0rqifcDjGXyk0e3YluBVbdFwkaaximPSV6T17jd8MLWBbUU6BefYDx6XlGe76D7jps3hlZiULpd6wBV/DaWnyQ90/2g2ffYkxbEpW0DJeFamYDDms0O9rTaGCnAgSPTreqnYGalMzF8HrsQ0Em7347KTyae1FSP0YNucnRzsmuaHaj1U83jzL7wjpdsgCjnn87/uLpO9t24Niqc+h7O+tkJN4JyHNw5rgFWAR7msR3Xw0pmdCYu5g+tVuGzqdrz0QNFhmXwgPtyt+akwc5wImHXPGZw36KZGsoM8NiRzYiyPc8Lje5g46OmfgcUG82MNn6eeuNzqMEAoa4nZDnlc9FOQe2Pt/MA5beyrRAy39if4o=
+  - secure: ZnJj9JtK1tKkumGLz+khiss0RP3eW/dp1slz3G0QLEAYaNzDcr1r2jtELoeVO2YTLQQyF1ywlcGT7swhd0qcGvGRVkeY94vZTSngCa5SxE3F3Bne8DQ6e7VDn7BsYNmFLG2m4sInVp2Ze/xF5v8KFxyKnn+oD+Q+fUPOqfQohCY90d5F7QvAIgq+fMtvBGVBu9Di9W6cXa0XUjCB1E0s77AJd4dXSrek0ruhq2QIryEfgtI/VD+gVylmzcA1wU1UQzkTPMuCdOQUGsW5oKuMubUFCQC+Xato7ciL361Tg/+BZbacUPnASSx4k6/KPf3F5LxLS6zB3sY7GHFpFd/iP4AvaiXHn5MC5qNjtNlhNWpctLzcUmCOTUyQoCu99nRrKJufdLFCI31B2uDZv4kslWQJFOSLjhkIpfEIFxlu1lFhO1yA/6BZrw6kRV8HlGkUQDJ7wsrbWb3MoaOIZIz3XE1Ydv2x5YGjaGObbwueHetCB6YPXB8ttdHOCIJ/7G4pYV5roJNNAGKZtIOt77O04+2CFvcBF1kAx/ReO+flu/lgCu5Uc1cvbDkm1Qn7H12teZ/swven/B+hIzdwLssxVZBMuPUkf2f61D8hFJT7/gvfp/szR1jDq1mpDQnzHmP+ba5L0rggT3+CiWJWPxejw09p/gbulD53C6ur2ALZewk=
