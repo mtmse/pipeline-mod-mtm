@@ -212,11 +212,27 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         </p:documentation>
     </p:option>
     -->
-    <p:option name="include-line-groups" required="false" px:type="boolean" select="'false'">
+    <p:option name="merge-line-groups" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
-            <h2 px:role="name">Block elements: Include line groups</h2>
-            <p px:role="desc">**Not implemented**</p>
+            <h2 px:role="name">Block elements: Merge line groups</h2>
+            <p px:role="desc">When enabled, lines in a linegroup are merged into a single paragraph, unless the line starts with a dash.</p>
         </p:documentation>
+    </p:option>
+    
+    <p:option name="paragraph-layout-style" required="false" select="'indent'">
+        <p:pipeinfo>
+            <px:data-type>
+                <choice>
+                    <value>indent</value>
+                    <value>empty-line</value>
+                </choice>
+            </px:data-type>
+        </p:pipeinfo>
+    	<p:documentation xmlns="http://www.w3.org/1999/xhtml">
+    		<h2 px:role="name">Block elements: Paragraph layout style</h2>
+    		<p px:role="desc">**Not implemented**</p>
+    		<!-- Awaiting release of dotify.task.impl:2.3.0 -->
+    	</p:documentation>
     </p:option>
     
     <!-- =============== -->
@@ -414,6 +430,22 @@ When disabled, images will only be rendered if they have a prodnote.</p>
     <!-- ======= -->
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dotify-utils/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl"/>
+    
+	<p:choose>
+	     <p:when test="$merge-line-groups='true'">
+	         <p:xslt>
+	             <p:input port="stylesheet">
+	                 <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/linegroup.xsl"/>
+	             </p:input>
+	             <p:input port="parameters">
+	                 <p:empty/>
+	             </p:input>
+	         </p:xslt>
+	     </p:when>
+	     <p:otherwise>
+	         <p:identity/>
+	     </p:otherwise>
+	 </p:choose>
     
     <p:xslt>
         <p:input port="stylesheet">

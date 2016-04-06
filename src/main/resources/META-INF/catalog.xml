@@ -7,6 +7,7 @@
       internal resources added to the catalog for now until we find a proper solution for
       https://github.com/daisy/pipeline-mod-braille/pull/79#discussion-diff-54276962
   -->
+  <uri name="http://www.mtm.se/pipeline/modules/braille/internal/linegroup.xsl" uri="../xml/linegroup.xsl"/>
   <uri name="http://www.mtm.se/pipeline/modules/braille/internal/move-cover-text.xsl" uri="../xml/move-cover-text.xsl"/>
   <uri name="http://www.mtm.se/pipeline/modules/braille/internal/punktinfo.xsl" uri="../xml/punktinfo.xsl"/>
   <uri name="http://www.mtm.se/pipeline/modules/braille/internal/pef-meta-finalizer.xsl" uri="../xml/pef-meta-finalizer.xsl"/>
