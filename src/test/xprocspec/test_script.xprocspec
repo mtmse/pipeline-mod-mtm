@@ -139,7 +139,7 @@
     </x:expect>
   </x:scenario>
   
-  <x:scenario label="dedication-toc-depth-0" xfail="true">
+  <x:scenario label="dedication-toc-depth-0">
     <x:documentation>
       Bug: see https://github.com/snaekobbi/pipeline-mod-mtm/issues/19
     </x:documentation>

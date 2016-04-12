@@ -230,8 +230,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         </p:pipeinfo>
     	<p:documentation xmlns="http://www.w3.org/1999/xhtml">
     		<h2 px:role="name">Block elements: Paragraph layout style</h2>
-    		<p px:role="desc">**Not implemented**</p>
-    		<!-- Awaiting release of dotify.task.impl:2.3.0 -->
+    		<p px:role="desc">Sets the paragraph layout mode</p>
     	</p:documentation>
     </p:option>
     
@@ -485,6 +484,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         <p:with-param port="parameters" name="show-print-page-numbers" select="$show-print-page-numbers"/>
         <p:with-param port="parameters" name="colophon-metadata-placement" select="$colophon-metadata-placement"/>
         <p:with-param port="parameters" name="rear-cover-placement" select="$rear-cover-placement"/>
+        <p:with-param port="parameters" name="default-paragraph-style" select="$paragraph-layout-style"/>
         <!-- <p:with-option name="format" select="'pef'"/> -->
     </dotify:xml-to-obfl>
     
