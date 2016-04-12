@@ -1,3 +1,18 @@
+pipeline-mod-mtm v1.5.0
+=======================
+
+Includes
+--------
+- New options `duplex`, `hyphenation`, `include-preview`, `include-brf`, `toc-depth`, `volume-toc`,
+  `show-braille-page-numbers`, `show-print-page-numbers`, `colophon-metadata-placement`,
+  `rear-cover-placement`, `merge-line-groups` and `paragraph-layout-style`
+  (https://github.com/joeha480/dotify/pull/174,
+  https://github.com/snaekobbi/pipeline-mod-mtm/issues/19)
+- Validation of ID-number (https://github.com/snaekobbi/pipeline-mod-mtm/issues/18)
+- Improved presentation of options in user interface
+  (https://github.com/snaekobbi/pipeline-mod-mtm/pull/12,
+  https://github.com/snaekobbi/pipeline-mod-mtm/pull/15)
+
 pipeline-mod-mtm v1.4.0
 =======================
 Compatibility update

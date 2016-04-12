@@ -14,7 +14,7 @@
   </parent>
 
   <artifactId>mod-mtm</artifactId>
-  <version>1.4.1-SNAPSHOT</version>
+  <version>1.5.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <name>DP2 Braille Modules :: mod-mtm</name>
