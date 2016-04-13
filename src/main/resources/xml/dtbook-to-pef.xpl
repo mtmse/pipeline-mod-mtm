@@ -476,6 +476,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         <p:with-option name="inner-margin" select="$inner-margin"/>
         <p:with-option name="outer-margin" select="$outer-margin"/>
         <p:with-option name="splitterMax" select="$maximum-number-of-pages"/>
+        <p:with-option name="dotify-options" select="$other"/>
         <p:with-param port="parameters" name="duplex" select="$duplex"/>
         <p:with-param port="parameters" name="hyphenate" select="$hyphenation"/>
         <p:with-param port="parameters" name="toc-depth" select="$toc-depth"/>
@@ -484,7 +485,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         <p:with-param port="parameters" name="show-print-page-numbers" select="$show-print-page-numbers"/>
         <p:with-param port="parameters" name="colophon-metadata-placement" select="$colophon-metadata-placement"/>
         <p:with-param port="parameters" name="rear-cover-placement" select="$rear-cover-placement"/>
-        <p:with-param port="parameters" name="default-paragraph-style" select="$paragraph-layout-style"/>
+        <p:with-param port="parameters" name="default-paragraph-separator" select="$paragraph-layout-style"/>
         <!-- <p:with-option name="format" select="'pef'"/> -->
     </dotify:xml-to-obfl>
     
