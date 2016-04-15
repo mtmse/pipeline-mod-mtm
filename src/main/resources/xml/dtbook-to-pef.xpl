@@ -230,7 +230,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         </p:pipeinfo>
     	<p:documentation xmlns="http://www.w3.org/1999/xhtml">
     		<h2 px:role="name">Block elements: Paragraph layout style</h2>
-    		<p px:role="desc">Sets the paragraph layout mode</p>
+    		<p px:role="desc">Sets the default paragraph layout style to the specified value. Note that paragraphs with an explicit paragraph style are not effected.</p>
     	</p:documentation>
     </p:option>
     
