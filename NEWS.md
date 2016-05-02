@@ -1,3 +1,7 @@
+pipeline-mod-mtm v1.5.1
+=======================
+Compatibility update
+
 pipeline-mod-mtm v1.5.0
 =======================
 
