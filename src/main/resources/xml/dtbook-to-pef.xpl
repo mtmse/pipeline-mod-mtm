@@ -271,8 +271,16 @@ When disabled, images will only be rendered if they have a prodnote.</p>
     <p:option name="show-print-page-numbers" required="false" px:type="boolean" select="'true'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Page numbers: Show print page numbers</h2>
+            <p px:role="desc">When enabled, print page numbers are rendered in the upper right corner of left hand pages.</p>
         </p:documentation>
     </p:option>
+    <p:option name="show-print-page-breaks" required="false" px:type="boolean" select="'false'">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Page numbers: Show print page breaks</h2>
+            <p px:role="desc">When enabled, print page breaks are indicated with a '⠌⠌' mark at the exact location of the page break and a '⠿' mark in the left margin of the row that includes the break.</p>
+        </p:documentation>
+    </p:option>
+    
     <!--
     <p:option name="force-braille-page-break" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
@@ -483,6 +491,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         <p:with-param port="parameters" name="volume-toc" select="$volume-toc"/>
         <p:with-param port="parameters" name="show-braille-page-numbers" select="$show-braille-page-numbers"/>
         <p:with-param port="parameters" name="show-print-page-numbers" select="$show-print-page-numbers"/>
+        <p:with-param port="parameters" name="show-print-page-breaks" select="$show-print-page-breaks"/>
         <p:with-param port="parameters" name="colophon-metadata-placement" select="$colophon-metadata-placement"/>
         <p:with-param port="parameters" name="rear-cover-placement" select="$rear-cover-placement"/>
         <p:with-param port="parameters" name="default-paragraph-separator" select="$paragraph-layout-style"/>

@@ -18,4 +18,5 @@
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:dotify-utils"/>
   <nextCatalog catalog="org:daisy:dotify:translator:impl"/>
   <nextCatalog catalog="org:daisy:dotify:hyphenator:impl"/>
+  <nextCatalog catalog="org:daisy:dotify:task:impl"/>
 </catalog>
