@@ -3,7 +3,8 @@
                xmlns:p="http://www.w3.org/ns/xproc"
                xmlns:px="http://www.daisy.org/ns/pipeline/xproc"
                xmlns:html="http://www.w3.org/1999/xhtml"
-               xmlns:pxi="http://www.daisy.org/ns/pipeline/xproc/internal">
+               xmlns:pxi="http://www.daisy.org/ns/pipeline/xproc/internal"
+               xmlns:css="http://www.daisy.org/ns/pipeline/braille-css">
   
   <x:script>
     <p:declare-step type="pxi:transform" version="1.0">
@@ -12,7 +13,7 @@
       <p:import href="http://www.daisy.org/pipeline/modules/braille/common-utils/library.xpl"/>
       <p:add-attribute match="html:p" attribute-name="style" attribute-value="display:block"/>
       <px:transform query="(input:css)(input:html)(output:css)(translator:mtm)(locale:sv)"/>
-      <p:delete match="@style"/>
+      <p:delete match="@style|@css:*"/>
     </p:declare-step>
   </x:script>
   
@@ -27,7 +28,7 @@
       </x:input>
     </x:call>
     <x:context label="result">
-      <x:document type="port" port="result"/>
+      <x:document type="port" port="result" select="/*/*"/>
     </x:context>
     <x:expect label="result" type="compare">
       <x:document type="inline">

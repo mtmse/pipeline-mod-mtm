@@ -177,10 +177,10 @@ Must be the letter "P" and 5 digits.</p>
         </p:documentation>
     </p:option>
     -->
-    <p:option name="capital-letters" required="false" px:type="boolean" select="'false'">
+    <p:option name="capital-letters" required="false" px:type="boolean" select="'true'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Translation/formatting of text: Capital letters</h2>
-            <p px:role="desc">When enabled, will indicate capital letters. **Not implemented**</p>
+            <p px:role="desc">When enabled, will indicate capital letters.</p>
         </p:documentation>
     </p:option>
     
@@ -500,6 +500,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
     
     <dotify:obfl-to-pef locale="sv-SE" mode="uncontracted">
         <p:with-option name="identifier" select="$identifier"/>
+        <p:with-param port="parameters" name="mark-capital-letters" select="$capital-letters"/>
     </dotify:obfl-to-pef>
     
     <p:xslt>
