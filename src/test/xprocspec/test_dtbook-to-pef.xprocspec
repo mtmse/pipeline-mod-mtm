@@ -5,32 +5,7 @@
   
   <x:scenario label="dtbook-to-pef">
     <x:call step="mtm:dtbook-to-pef">
-      <x:input port="source">
-        <x:document type="inline">
-          <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="sv" version="2005-3">
-          	<head>
-          		<meta name="dc:Publisher" content="MTM" />
-          	</head>
-            <book>
-              <frontmatter>
-              	<level1 class="jacketcopy">
-              		<prodnote class="rearcover">
-              			<p>Rear jacket copy</p>
-              		</prodnote>
-              	</level1>
-              </frontmatter>
-              <bodymatter>
-              	<level1 class="colophon">
-              		<p>Colophon</p>
-              	</level1>
-              	<level1>
-                	<p>Body</p>
-               	</level1>
-              </bodymatter>
-            </book>
-          </dtbook>
-        </x:document>
-      </x:input>
+      <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/dtbook-to-pef.xml')"/>
       <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
       <x:option name="identifier" select="'P00001'"/>
       <x:option name="include-obfl" select="'false'"/>
@@ -39,103 +14,7 @@
       <x:document type="file" base-uri="temp-dir" href="output-dir/P00001/P00001.pef"/>
     </x:context>
     <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
-      <x:document type="inline">
-        <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1">
-          <head>
-            <meta xmlns:dc="http://purl.org/dc/elements/1.1/"
-                  xmlns:ext="http://www.tpb.se/pef/extensions/"
-                  ext:version="2010-1">
-              <dc:format>application/x-pef+xml</dc:format>
-              <dc:publisher>MTM</dc:publisher>
-              <ext:sheets>4</ext:sheets>
-              <ext:volumes>1</ext:volumes>
-              <ext:kiloChars>0</ext:kiloChars>
-            </meta>
-          </head>
-          <body>
-            <volume cols="32" rows="29" rowgap="0" duplex="true">
-              <section>
-                <page>
-                  <row>⠀⠀⠏⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠹</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠠⠑⠝⠀⠧⠕⠇⠽⠍⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠧⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠼</row>
-                </page>
-                <page>
-                  <row/>
-                </page>
-              </section>
-              <section>
-                <page>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row>⠀⠀⠠⠃⠕⠙⠽</row>
-                </page>
-                <page>
-                  <row/>
-                </page>
-              </section>
-              <section>
-                <page>
-                  <row/>
-                  <row>⠀⠀⠒⠒⠀⠠⠞⠗⠽⠉⠅⠥⠏⠏⠛⠊⠋⠞⠑⠗⠀⠒⠒⠒⠒⠒⠒⠒⠒⠒</row>
-                  <row/>
-                  <row>⠀⠀⠠⠏⠥⠝⠅⠞⠎⠅⠗⠊⠋⠞⠎⠃⠕⠅⠑⠝⠀⠜⠗⠀⠏⠗⠕⠙⠥⠤</row>
-                  <row>⠀⠀⠉⠑⠗⠁⠙⠀⠼⠃⠚⠁⠋⠀⠁⠧⠀⠠⠠⠍⠞⠍⠂⠀⠠⠚⠕⠤</row>
-                  <row>⠀⠀⠓⠁⠝⠝⠑⠎⠓⠕⠧</row>
-                  <row/>
-                  <row>⠀⠀⠠⠍⠑⠙⠊⠑⠝⠥⠍⠍⠑⠗⠒⠀⠠⠏⠼⠚⠚⠚⠚⠁</row>
-                  <row/>
-                  <row>⠀⠀⠠⠉⠕⠇⠕⠏⠓⠕⠝</row>
-                  <row>⠀⠀⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒</row>
-                </page>
-                <page>
-                  <row/>
-                </page>
-              </section>
-              <section>
-                <page>
-                  <row/>
-                  <row>⠀⠀⠒⠒⠀⠠⠃⠁⠅⠎⠊⠙⠑⠎⠞⠑⠭⠞⠀⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒</row>
-                  <row/>
-                  <row>⠀⠀⠠⠗⠑⠁⠗⠀⠚⠁⠉⠅⠑⠞⠀⠉⠕⠏⠽</row>
-                  <row>⠀⠀⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒</row>
-                </page>
-                <page>
-                  <row/>
-                </page>
-              </section>
-            </volume>
-          </body>
-        </pef>
-      </x:document>
+      <x:document type="file" href="../resources/test_dtbook-to-pef/dtbook-to-pef.pef"/>
     </x:expect>
   </x:scenario>
   
@@ -144,35 +23,7 @@
       Test that bug https://github.com/snaekobbi/pipeline-mod-mtm/issues/19 has been fixed.
     </x:documentation>
     <x:call step="mtm:dtbook-to-pef">
-      <x:input port="source">
-        <x:document type="inline">
-          <dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="sv" version="2005-3">
-            <head>
-              <meta name="dc:Publisher" content="MTM" />
-            </head>
-            <book>
-              <frontmatter>
-                <level1 class="jacketcopy">
-                  <prodnote class="rearcover">
-                    <p>Rear jacket copy</p>
-                  </prodnote>
-                </level1>
-                <level1>
-                  <h1>Dedication</h1>
-                </level1>
-                <level1 class="toc">
-                  <h1>Contents</h1>
-                </level1>
-              </frontmatter>
-              <bodymatter>
-                <level1>
-                  <p>Body</p>
-                </level1>
-              </bodymatter>
-            </book>
-          </dtbook>
-        </x:document>
-      </x:input>
+      <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/dedication-toc-depth-0.xml')"/>
       <x:option name="toc-depth" select="0"/>
       <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
       <x:option name="identifier" select="'P00002'"/>
@@ -182,500 +33,70 @@
       <x:document type="file" base-uri="temp-dir" href="output-dir/P00002/P00002.pef"/>
     </x:context>
     <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
-      <x:document type="inline">
-        <pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1">
-          <head>
-            <meta xmlns:dc="http://purl.org/dc/elements/1.1/"
-                  xmlns:ext="http://www.tpb.se/pef/extensions/"
-                  ext:version="2010-1">
-              <dc:format>application/x-pef+xml</dc:format>
-              <dc:publisher>MTM</dc:publisher>
-              <ext:sheets>4</ext:sheets>
-              <ext:volumes>1</ext:volumes>
-              <ext:kiloChars>0</ext:kiloChars>
-            </meta>
-          </head>
-          <body>
-            <volume cols="32" rows="29" rowgap="0" duplex="true">
-              <section>
-                <page>
-                  <row>⠀⠀⠏⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠹</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠠⠑⠝⠀⠧⠕⠇⠽⠍⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-                  <row>⠀⠀⠧⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠼</row>
-                </page>
-                <page>
-                  <row/>
-                </page>
-              </section>
-              <section>
-                <page>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠊</row>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row>⠀⠀⠠⠙⠑⠙⠊⠉⠁⠞⠊⠕⠝</row>
-                </page>
-                <page>
-                  <row/>
-                </page>
-              </section>
-              <section>
-                <page>
-                  <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
-                  <row/>
-                  <row/>
-                  <row/>
-                  <row>⠀⠀⠠⠃⠕⠙⠽</row>
-                </page>
-                <page>
-                  <row/>
-                </page>
-              </section>
-              <section>
-                <page>
-                  <row/>
-                  <row>⠀⠀⠒⠒⠀⠠⠃⠁⠅⠎⠊⠙⠑⠎⠞⠑⠭⠞⠀⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒</row>
-                  <row/>
-                  <row>⠀⠀⠠⠗⠑⠁⠗⠀⠚⠁⠉⠅⠑⠞⠀⠉⠕⠏⠽</row>
-                  <row>⠀⠀⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒⠒</row>
-                </page>
-                <page>
-                  <row/>
-                </page>
-              </section>
-            </volume>
-          </body>
-        </pef>
-      </x:document>
+      <x:document type="file" href="../resources/test_dtbook-to-pef/dedication-toc-depth-0.pef"/>
     </x:expect>
   </x:scenario>
-	
-	<x:scenario label="dtbook-to-pef-linegroup">
-		<x:call step="mtm:dtbook-to-pef">
-			<x:input port="source">
-				<x:document type="inline">
-					<dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="sv" version="2005-3">
-						<head>
-							<meta name="dc:Publisher" content="MTM" />
-						</head>
-						<book>
-							<bodymatter>
-								<level1>
-									<linegroup>
-										<line>This is the beginning</line>
-										<line>of a paragraph that</line>
-										<line>is broken up.</line>
-									</linegroup>
-								</level1>
-							</bodymatter>
-						</book>
-					</dtbook>
-				</x:document>
-			</x:input>
-			<x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
-			<x:option name="identifier" select="'P00003'"/>
-			<x:option name="include-obfl" select="'false'"/>
-			<x:option name="merge-line-groups" select="'true'"/>
-		</x:call>
-		<x:context label="pef">
-			<x:document type="file" base-uri="temp-dir" href="output-dir/P00003/P00003.pef"/>
-		</x:context>
-		<x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
-			<x:document type="inline">
-				<pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1">
-					<head>
-						<meta xmlns:dc="http://purl.org/dc/elements/1.1/"
-							xmlns:ext="http://www.tpb.se/pef/extensions/"
-							ext:version="2010-1">
-							<dc:format>application/x-pef+xml</dc:format>
-							<dc:identifier>P00003</dc:identifier>
-							<dc:date>2016-04-06</dc:date>
-							<dc:publisher>MTM</dc:publisher>
-							<ext:sheets>2</ext:sheets>
-							<ext:volumes>1</ext:volumes>
-							<ext:kiloChars>0</ext:kiloChars>
-						</meta>
-					</head>
-					<body>
-						<volume cols="32" rows="29" rowgap="0" duplex="true">
-							<section>
-								<page>
-									<row>⠀⠀⠏⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠹</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠠⠑⠝⠀⠧⠕⠇⠽⠍⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠧⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠼</row>
-								</page>
-								<page>
-									<row/>
-								</page>
-							</section>
-							<section>
-								<page>
-									<row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
-									<row/>
-									<row/>
-									<row/>
-									<row>⠀⠀⠠⠞⠓⠊⠎⠀⠊⠎⠀⠞⠓⠑⠀⠃⠑⠛⠊⠝⠝⠊⠝⠛⠀⠕⠋⠀⠁</row>
-									<row>⠀⠀⠏⠁⠗⠁⠛⠗⠁⠏⠓⠀⠞⠓⠁⠞⠀⠊⠎⠀⠃⠗⠕⠅⠑⠝⠀⠥⠏⠄</row>
-								</page>
-								<page>
-									<row/>
-								</page>
-							</section>
-						</volume>
-					</body>
-				</pef>
-			</x:document>
-		</x:expect>
-	</x:scenario>
+  
+  <x:scenario label="linegroup">
+    <x:call step="mtm:dtbook-to-pef">
+      <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/linegroup.xml')"/>
+      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
+      <x:option name="identifier" select="'P00003'"/>
+      <x:option name="include-obfl" select="'false'"/>
+      <x:option name="merge-line-groups" select="'true'"/>
+    </x:call>
+    <x:context label="pef">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/P00003/P00003.pef"/>
+    </x:context>
+    <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_dtbook-to-pef/linegroup.pef"/>
+    </x:expect>
+  </x:scenario>
 
-	<x:scenario label="dtbook-to-pef-p-style">
-		<x:call step="mtm:dtbook-to-pef">
-			<x:input port="source">
-				<x:document type="inline">
-					<dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="sv" version="2005-3">
-						<head>
-							<meta name="dc:Publisher" content="MTM" />
-						</head>
-						<book>
-							<bodymatter>
-								<level1>
-									<p>A paragraph</p>
-									<p>A paragraph</p>
-									<p>A paragraph</p>
-								</level1>
-							</bodymatter>
-						</book>
-					</dtbook>
-				</x:document>
-			</x:input>
-			<x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
-			<x:option name="identifier" select="'P00004'"/>
-			<x:option name="include-obfl" select="'false'"/>
-			<x:option name="paragraph-layout-style" select="'empty-line'"/>
-		</x:call>
-		<x:context label="pef">
-			<x:document type="file" base-uri="temp-dir" href="output-dir/P00004/P00004.pef"/>
-		</x:context>
-		<x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
-			<x:document type="inline">
-				<pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1">
-				   <head>
-				      <meta xmlns:dc="http://purl.org/dc/elements/1.1/"
-				            xmlns:ext="http://www.tpb.se/pef/extensions/"
-				            ext:version="2010-1">
-				         <dc:format>application/x-pef+xml</dc:format>
-				         <dc:identifier>P00004</dc:identifier>
-				         <dc:date>2016-04-13</dc:date>
-				         <dc:publisher>MTM</dc:publisher>
-				         <ext:sheets>2</ext:sheets>
-				         <ext:volumes>1</ext:volumes>
-				         <ext:kiloChars>0</ext:kiloChars>
-				      </meta>
-				   </head>
-				   <body>
-				      <volume cols="32" rows="29" rowgap="0" duplex="true">
-				         <section>
-				            <page>
-				               <row>⠀⠀⠏⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠹</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠠⠑⠝⠀⠧⠕⠇⠽⠍⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-				               <row>⠀⠀⠧⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠼</row>
-				            </page>
-				            <page>
-				               <row/>
-				            </page>
-				         </section>
-				         <section>
-				            <page>
-				               <row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
-				               <row/>
-				               <row/>
-				               <row/>
-				               <row>⠀⠀⠠⠁⠀⠏⠁⠗⠁⠛⠗⠁⠏⠓</row>
-				               <row/>
-				               <row>⠀⠀⠠⠁⠀⠏⠁⠗⠁⠛⠗⠁⠏⠓</row>
-				               <row/>
-				               <row>⠀⠀⠠⠁⠀⠏⠁⠗⠁⠛⠗⠁⠏⠓</row>
-				            </page>
-				            <page>
-				               <row/>
-				            </page>
-				         </section>
-				      </volume>
-				   </body>
-				</pef>
-			</x:document>
-		</x:expect>
-	</x:scenario>
+  <x:scenario label="p-style">
+    <x:call step="mtm:dtbook-to-pef">
+      <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/p-style.xml')"/>
+      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
+      <x:option name="identifier" select="'P00004'"/>
+      <x:option name="include-obfl" select="'false'"/>
+      <x:option name="paragraph-layout-style" select="'empty-line'"/>
+    </x:call>
+    <x:context label="pef">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/P00004/P00004.pef"/>
+    </x:context>
+    <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_dtbook-to-pef/p-style.pef"/>
+    </x:expect>
+  </x:scenario>
 
-	<x:scenario label="show-print-page-breaks">
-		<x:call step="mtm:dtbook-to-pef">
-			<x:input port="source">
-				<x:document type="inline">
-					<dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="sv" version="2005-3">
-						<head>
-							<meta name="dc:Publisher" content="MTM" />
-						</head>
-						<book>
-							<bodymatter>
-								<level1>
-									<p>A paragraph <pagenum/> with a print page break.</p>
-								</level1>
-							</bodymatter>
-						</book>
-					</dtbook>
-				</x:document>
-			</x:input>
-			<x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
-			<x:option name="identifier" select="'P00005'"/>
-			<x:option name="show-print-page-breaks" select="'true'"/>
-		</x:call>
-		<x:context label="pef">
-			<x:document type="file" base-uri="temp-dir" href="output-dir/P00005/P00005.pef"/>
-		</x:context>
-		<x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
-			<x:document type="inline">
-				<pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1">
-					<head>
-						<meta xmlns:ext="http://www.tpb.se/pef/extensions/"
-						      xmlns:dc="http://purl.org/dc/elements/1.1/"
-						      ext:version="2010-1">
-							<dc:format>application/x-pef+xml</dc:format>
-							<dc:identifier>P00005</dc:identifier>
-							<dc:date>2016-05-11</dc:date>
-							<dc:publisher>MTM</dc:publisher>
-							<ext:sheets >2</ext:sheets>
-							<ext:volumes>1</ext:volumes>
-							<ext:kiloChars>0</ext:kiloChars>
-						</meta>
-					</head>
-					<body>
-						<volume cols="32" rows="29" rowgap="0" duplex="true">
-							<section>
-								<page>
-									<row>⠀⠀⠏⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠹</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠠⠑⠝⠀⠧⠕⠇⠽⠍⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠧⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠼</row>
-								</page>
-								<page/>
-							</section>
-							<section>
-								<page>
-									<row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
-									<row/>
-									<row/>
-									<row/>
-									<row>⠀⠀⠿⠠⠁⠀⠏⠁⠗⠁⠛⠗⠁⠏⠓⠀⠌⠌⠀⠺⠊⠞⠓⠀⠁</row>
-									<row>⠀⠀⠀⠏⠗⠊⠝⠞⠀⠏⠁⠛⠑⠀⠃⠗⠑⠁⠅⠄</row>
-								</page>
-								<page/>
-							</section>
-						</volume>
-					</body>
-				</pef>
-			</x:document>
-		</x:expect>
-	</x:scenario>
-	
-	<x:scenario label="capital-letters">
-		<x:call step="mtm:dtbook-to-pef">
-			<x:input port="source">
-				<x:document type="inline">
-					<dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="sv" version="2005-3">
-						<head>
-							<meta name="dc:Publisher" content="MTM" />
-						</head>
-						<book>
-							<bodymatter>
-								<level1>
-									<p>A paragraph</p>
-								</level1>
-							</bodymatter>
-						</book>
-					</dtbook>
-				</x:document>
-			</x:input>
-			<x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
-			<x:option name="identifier" select="'P00006'"/>
-			<x:option name="capital-letters" select="'false'"/>
-		</x:call>
-		<x:context label="pef">
-			<x:document type="file" base-uri="temp-dir" href="output-dir/P00006/P00006.pef"/>
-		</x:context>
-		<x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
-			<x:document type="inline">
-				<pef xmlns="http://www.daisy.org/ns/2008/pef" version="2008-1">
-					<head>
-						<meta xmlns:ext="http://www.tpb.se/pef/extensions/"
-						      xmlns:dc="http://purl.org/dc/elements/1.1/"
-						      ext:version="2010-1">
-							<dc:format>application/x-pef+xml</dc:format>
-							<dc:identifier>P00006</dc:identifier>
-							<dc:date>2016-05-13</dc:date>
-							<dc:publisher>MTM</dc:publisher>
-							<ext:sheets >2</ext:sheets>
-							<ext:volumes>1</ext:volumes>
-							<ext:kiloChars>0</ext:kiloChars>
-						</meta>
-					</head>
-					<body>
-						<volume cols="32" rows="29" rowgap="0" duplex="true">
-							<section>
-								<page>
-									<row>⠀⠀⠏⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉⠹</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⠝⠀⠧⠕⠇⠽⠍⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸</row>
-									<row>⠀⠀⠧⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠼</row>
-								</page>
-								<page>
-									<row/>
-								</page>
-							</section>
-							<section>
-								<page>
-									<row>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠼⠁</row>
-									<row/>
-									<row/>
-									<row/>
-									<row>⠀⠀⠁⠀⠏⠁⠗⠁⠛⠗⠁⠏⠓</row>
-								</page>
-								<page>
-									<row/>
-								</page>
-							</section>
-						</volume>
-					</body>
-				</pef>
-			</x:document>
-		</x:expect>
-	</x:scenario>
-	
+  <x:scenario label="show-print-page-breaks">
+    <x:call step="mtm:dtbook-to-pef">
+      <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/show-print-page-breaks.xml')"/>
+      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
+      <x:option name="identifier" select="'P00005'"/>
+      <x:option name="show-print-page-breaks" select="'true'"/>
+    </x:call>
+    <x:context label="pef">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/P00005/P00005.pef"/>
+    </x:context>
+    <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_dtbook-to-pef/show-print-page-breaks.pef"/>
+    </x:expect>
+  </x:scenario>
+  
+  <x:scenario label="capital-letters">
+    <x:call step="mtm:dtbook-to-pef">
+      <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/capital-letters.xml')"/>
+      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
+      <x:option name="identifier" select="'P00006'"/>
+      <x:option name="capital-letters" select="'false'"/>
+    </x:call>
+    <x:context label="pef">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/P00006/P00006.pef"/>
+    </x:context>
+    <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_dtbook-to-pef/capital-letters.pef"/>
+    </x:expect>
+  </x:scenario>
+  
 </x:description>

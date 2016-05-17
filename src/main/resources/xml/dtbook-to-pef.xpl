@@ -5,8 +5,7 @@
                 xmlns:px="http://www.daisy.org/ns/pipeline/xproc"
                 xmlns:dotify="http://code.google.com/p/dotify/"
                 xmlns:pef="http://www.daisy.org/ns/2008/pef"
-                exclude-inline-prefixes="#all"
-                name="main">
+                exclude-inline-prefixes="#all">
     
     <p:documentation xmlns="http://www.w3.org/1999/xhtml">
         <h1 px:role="name">DTBook to PEF (MTM)</h1>
@@ -16,11 +15,12 @@
     <!-- ============ -->
     <!-- Main options -->
     <!-- ============ -->
-    <p:input port="source" primary="true" px:name="source" px:media-type="application/x-dtbook+xml">
+    <p:option name="source" required="true" px:type="anyFileURI" px:sequence="false"
+              px:media-type="application/x-dtbook+xml">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Input DTBook</h2>
         </p:documentation>
-    </p:input>
+    </p:option>
     <!--
     <p:option name="ascii-table" required="false" px:type="string" select="''">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
@@ -435,8 +435,30 @@ When disabled, images will only be rendered if they have a prodnote.</p>
     <!-- ======= -->
     <!-- Imports -->
     <!-- ======= -->
+    <p:import href="http://www.daisy.org/pipeline/modules/dtbook-utils/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dotify-utils/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl"/>
+    
+    <!-- ==== -->
+    <!-- Load -->
+    <!-- ==== -->
+    
+    <p:load>
+        <p:with-option name="href" select="$source">
+            <p:empty/>
+        </p:with-option>
+    </p:load>
+    <px:dtbook-load name="load"/>
+    <p:sink/>
+    <p:identity name="source">
+        <p:input port="source">
+            <p:pipe step="load" port="in-memory.out"/>
+        </p:input>
+    </p:identity>
+    
+    <!-- ======= -->
+    <!-- Convert -->
+    <!-- ======= -->
     
 	<p:choose>
 	     <p:when test="$merge-line-groups='true'">
@@ -520,6 +542,10 @@ When disabled, images will only be rendered if they have a prodnote.</p>
             <p:empty/>
         </p:input>
     </p:xslt>
+    
+    <!-- ===== -->
+    <!-- Store -->
+    <!-- ===== -->
     
     <pef:store>
         <p:with-option name="href" select="concat($pef-output-dir,'/',$identifier,'/',$identifier,'.pef')"/>

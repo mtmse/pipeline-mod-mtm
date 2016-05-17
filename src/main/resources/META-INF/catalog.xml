@@ -14,6 +14,7 @@
   <uri name="http://www.mtm.se/pipeline/modules/braille/internal/pef-section-patch.xsl" uri="../xml/pef-section-patch.xsl"/>
   
   <!-- dependencies -->
+  <nextCatalog catalog="org:daisy:pipeline:modules:dtbook-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:css-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:dotify-utils"/>
   <nextCatalog catalog="org:daisy:dotify:translator:impl"/>

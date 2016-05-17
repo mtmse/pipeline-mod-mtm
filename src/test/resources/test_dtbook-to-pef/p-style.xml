@@ -1,0 +1,14 @@
+<dtbook xmlns="http://www.daisy.org/z3986/2005/dtbook/" xml:lang="sv" version="2005-3">
+	<head>
+		<meta name="dc:Publisher" content="MTM" />
+	</head>
+	<book>
+		<bodymatter>
+			<level1>
+				<p>A paragraph</p>
+				<p>A paragraph</p>
+				<p>A paragraph</p>
+			</level1>
+		</bodymatter>
+	</book>
+</dtbook>
