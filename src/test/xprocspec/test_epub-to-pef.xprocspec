@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.daisy.org/ns/xprocspec"
+               xmlns:mtm="http://www.mtm.se/pipeline/"
+               xmlns:pef="http://www.daisy.org/ns/2008/pef"
+               script="http://www.mtm.se/pipeline/modules/braille/file-to-pef.xpl">
+  
+  <x:scenario label="epub-to-pef">
+    <x:call step="mtm:file-to-pef">
+      <x:option name="source" select="resolve-uri('../resources/test_epub-to-pef/epub-to-pef.epub')"/>
+      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp/')"/>
+      <x:option name="identifier" select="'P00001'"/>
+      <x:option name="include-obfl" select="'false'"/>
+    </x:call>
+    <x:context label="pef">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/P00001/P00001.pef"/>
+    </x:context>
+    <x:expect label="result is pef" type="xpath" test="/pef:pef"/>
+  </x:scenario>
+  
+</x:description>

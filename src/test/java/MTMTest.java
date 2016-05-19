@@ -20,6 +20,7 @@ import static org.daisy.pipeline.pax.exam.Options.logbackClassic;
 import static org.daisy.pipeline.pax.exam.Options.logbackConfigFile;
 import static org.daisy.pipeline.pax.exam.Options.mavenBundle;
 import static org.daisy.pipeline.pax.exam.Options.mavenBundlesWithDependencies;
+import static org.daisy.pipeline.pax.exam.Options.pipelineModule;
 import static org.daisy.pipeline.pax.exam.Options.thisBundle;
 import static org.daisy.pipeline.pax.exam.Options.xprocspec;
 
@@ -82,6 +83,7 @@ public class MTMTest {
 				brailleModule("dotify-formatter"),
 				brailleModule("pef-utils"),
 				brailleModule("dtbook-to-pef"),
+				pipelineModule("file-utils"),
 				mavenBundle("org.daisy.dotify:dotify.translator.impl:?"),
 				mavenBundle("org.daisy.dotify:dotify.hyphenator.impl:?"),
 				mavenBundle("org.daisy.dotify:dotify.text.impl:?"),

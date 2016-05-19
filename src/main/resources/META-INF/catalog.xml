@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" xmlns:px="http://www.daisy.org/ns/pipeline">
   <!-- scripts -->
-  <uri name="http://www.mtm.se/pipeline/modules/braille/dtbook-to-pef.xpl" uri="../xml/dtbook-to-pef.xpl" px:script="true"/>
+  <uri name="http://www.mtm.se/pipeline/modules/braille/file-to-pef.xpl" uri="../xml/file-to-pef.xpl" px:script="true"/>
   
   <!--
       internal resources added to the catalog for now until we find a proper solution for
@@ -14,9 +14,9 @@
   <uri name="http://www.mtm.se/pipeline/modules/braille/internal/pef-section-patch.xsl" uri="../xml/pef-section-patch.xsl"/>
   
   <!-- dependencies -->
-  <nextCatalog catalog="org:daisy:pipeline:modules:dtbook-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:css-utils"/>
   <nextCatalog catalog="org:daisy:pipeline:modules:braille:dotify-utils"/>
+  <nextCatalog catalog="org:daisy:pipeline:modules:file-utils"/>
   <nextCatalog catalog="org:daisy:dotify:translator:impl"/>
   <nextCatalog catalog="org:daisy:dotify:hyphenator:impl"/>
   <nextCatalog catalog="org:daisy:dotify:task:impl"/>

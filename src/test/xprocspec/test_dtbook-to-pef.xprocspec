@@ -1,117 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <x:description xmlns:x="http://www.daisy.org/ns/xprocspec"
                xmlns:mtm="http://www.mtm.se/pipeline/"
-               script="http://www.mtm.se/pipeline/modules/braille/dtbook-to-pef.xpl">
+               script="http://www.mtm.se/pipeline/modules/braille/file-to-pef.xpl">
   
-  <x:scenario label="dtbook-to-pef">
-    <x:call step="mtm:dtbook-to-pef">
-      <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/dtbook-to-pef.xml')"/>
+  <x:scenario label="_">
+    <x:call step="mtm:file-to-pef">
       <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
+      <x:option name="temp-dir" select="concat($temp-dir,'temp/')"/>
       <x:option name="identifier" select="'P00001'"/>
       <x:option name="include-obfl" select="'false'"/>
     </x:call>
-    <x:context label="pef">
-      <x:document type="file" base-uri="temp-dir" href="output-dir/P00001/P00001.pef"/>
-    </x:context>
-    <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
-      <x:document type="file" href="../resources/test_dtbook-to-pef/dtbook-to-pef.pef"/>
-    </x:expect>
-  </x:scenario>
-  
-  <x:scenario label="dedication-toc-depth-0">
-    <x:documentation>
-      Test that bug https://github.com/snaekobbi/pipeline-mod-mtm/issues/19 has been fixed.
-    </x:documentation>
-    <x:call step="mtm:dtbook-to-pef">
-      <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/dedication-toc-depth-0.xml')"/>
-      <x:option name="toc-depth" select="0"/>
-      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
-      <x:option name="identifier" select="'P00002'"/>
-      <x:option name="include-obfl" select="'false'"/>
-    </x:call>
-    <x:context label="pef">
-      <x:document type="file" base-uri="temp-dir" href="output-dir/P00002/P00002.pef"/>
-    </x:context>
-    <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
-      <x:document type="file" href="../resources/test_dtbook-to-pef/dedication-toc-depth-0.pef"/>
-    </x:expect>
-  </x:scenario>
-  
-  <x:scenario label="linegroup">
-    <x:call step="mtm:dtbook-to-pef">
-      <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/linegroup.xml')"/>
-      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
-      <x:option name="identifier" select="'P00003'"/>
-      <x:option name="include-obfl" select="'false'"/>
-      <x:option name="merge-line-groups" select="'true'"/>
-    </x:call>
-    <x:context label="pef">
-      <x:document type="file" base-uri="temp-dir" href="output-dir/P00003/P00003.pef"/>
-    </x:context>
-    <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
-      <x:document type="file" href="../resources/test_dtbook-to-pef/linegroup.pef"/>
-    </x:expect>
-  </x:scenario>
+    
+    <x:scenario label="dtbook-to-pef">
+      <x:call>
+        <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/dtbook-to-pef.xml')"/>
+        <x:option name="identifier" select="'P00001'"/>
+      </x:call>
+      <x:context label="pef">
+        <x:document type="file" base-uri="temp-dir" href="output-dir/P00001/P00001.pef"/>
+      </x:context>
+      <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+        <x:document type="file" href="../resources/test_dtbook-to-pef/dtbook-to-pef.pef"/>
+      </x:expect>
+    </x:scenario>
+    
+    <x:scenario label="dedication-toc-depth-0">
+      <x:documentation>
+        Test that bug https://github.com/snaekobbi/pipeline-mod-mtm/issues/19 has been fixed.
+      </x:documentation>
+      <x:call>
+        <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/dedication-toc-depth-0.xml')"/>
+        <x:option name="toc-depth" select="0"/>
+        <x:option name="identifier" select="'P00002'"/>
+      </x:call>
+      <x:context label="pef">
+        <x:document type="file" base-uri="temp-dir" href="output-dir/P00002/P00002.pef"/>
+      </x:context>
+      <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+        <x:document type="file" href="../resources/test_dtbook-to-pef/dedication-toc-depth-0.pef"/>
+      </x:expect>
+    </x:scenario>
+    
+    <x:scenario label="linegroup">
+      <x:call>
+        <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/linegroup.xml')"/>
+        <x:option name="identifier" select="'P00003'"/>
+        <x:option name="merge-line-groups" select="'true'"/>
+      </x:call>
+      <x:context label="pef">
+        <x:document type="file" base-uri="temp-dir" href="output-dir/P00003/P00003.pef"/>
+      </x:context>
+      <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+        <x:document type="file" href="../resources/test_dtbook-to-pef/linegroup.pef"/>
+      </x:expect>
+    </x:scenario>
 
-  <x:scenario label="p-style">
-    <x:call step="mtm:dtbook-to-pef">
-      <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/p-style.xml')"/>
-      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
-      <x:option name="identifier" select="'P00004'"/>
-      <x:option name="include-obfl" select="'false'"/>
-      <x:option name="paragraph-layout-style" select="'empty-line'"/>
-    </x:call>
-    <x:context label="pef">
-      <x:document type="file" base-uri="temp-dir" href="output-dir/P00004/P00004.pef"/>
-    </x:context>
-    <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
-      <x:document type="file" href="../resources/test_dtbook-to-pef/p-style.pef"/>
-    </x:expect>
-  </x:scenario>
+    <x:scenario label="p-style">
+      <x:call>
+        <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/p-style.xml')"/>
+        <x:option name="identifier" select="'P00004'"/>
+        <x:option name="paragraph-layout-style" select="'empty-line'"/>
+      </x:call>
+      <x:context label="pef">
+        <x:document type="file" base-uri="temp-dir" href="output-dir/P00004/P00004.pef"/>
+      </x:context>
+      <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+        <x:document type="file" href="../resources/test_dtbook-to-pef/p-style.pef"/>
+      </x:expect>
+    </x:scenario>
 
-  <x:scenario label="show-print-page-breaks">
-    <x:call step="mtm:dtbook-to-pef">
-      <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/show-print-page-breaks.xml')"/>
-      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
-      <x:option name="identifier" select="'P00005'"/>
-      <x:option name="show-print-page-breaks" select="'true'"/>
-    </x:call>
-    <x:context label="pef">
-      <x:document type="file" base-uri="temp-dir" href="output-dir/P00005/P00005.pef"/>
-    </x:context>
-    <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
-      <x:document type="file" href="../resources/test_dtbook-to-pef/show-print-page-breaks.pef"/>
-    </x:expect>
-  </x:scenario>
-  
-  <x:scenario label="capital-letters">
-    <x:call step="mtm:dtbook-to-pef">
-      <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/capital-letters.xml')"/>
-      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
-      <x:option name="identifier" select="'P00006'"/>
-      <x:option name="capital-letters" select="'false'"/>
-    </x:call>
-    <x:context label="pef">
-      <x:document type="file" base-uri="temp-dir" href="output-dir/P00006/P00006.pef"/>
-    </x:context>
-    <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
-      <x:document type="file" href="../resources/test_dtbook-to-pef/capital-letters.pef"/>
-    </x:expect>
-  </x:scenario>
-  
-  <x:scenario label="text-level-formatting">
-    <x:call step="mtm:dtbook-to-pef">
-      <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/text-level-formatting.xml')"/>
-      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
-      <x:option name="identifier" select="'P00007'"/>
-      <x:option name="text-level-formatting" select="'false'"/>
-    </x:call>
-    <x:context label="pef">
-      <x:document type="file" base-uri="temp-dir" href="output-dir/P00007/P00007.pef"/>
-    </x:context>
-    <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
-      <x:document type="file" href="../resources/test_dtbook-to-pef/text-level-formatting.pef"/>
-    </x:expect>
+    <x:scenario label="show-print-page-breaks">
+      <x:call>
+        <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/show-print-page-breaks.xml')"/>
+        <x:option name="identifier" select="'P00005'"/>
+        <x:option name="show-print-page-breaks" select="'true'"/>
+      </x:call>
+      <x:context label="pef">
+        <x:document type="file" base-uri="temp-dir" href="output-dir/P00005/P00005.pef"/>
+      </x:context>
+      <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+        <x:document type="file" href="../resources/test_dtbook-to-pef/show-print-page-breaks.pef"/>
+      </x:expect>
+    </x:scenario>
+    
+    <x:scenario label="capital-letters">
+      <x:call>
+        <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/capital-letters.xml')"/>
+        <x:option name="identifier" select="'P00006'"/>
+        <x:option name="capital-letters" select="'false'"/>
+      </x:call>
+      <x:context label="pef">
+        <x:document type="file" base-uri="temp-dir" href="output-dir/P00006/P00006.pef"/>
+      </x:context>
+      <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+        <x:document type="file" href="../resources/test_dtbook-to-pef/capital-letters.pef"/>
+      </x:expect>
+    </x:scenario>
+    
+    <x:scenario label="text-level-formatting">
+      <x:call>
+        <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/text-level-formatting.xml')"/>
+        <x:option name="identifier" select="'P00007'"/>
+        <x:option name="text-level-formatting" select="'false'"/>
+      </x:call>
+      <x:context label="pef">
+        <x:document type="file" base-uri="temp-dir" href="output-dir/P00007/P00007.pef"/>
+      </x:context>
+      <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+        <x:document type="file" href="../resources/test_dtbook-to-pef/text-level-formatting.pef"/>
+      </x:expect>
+    </x:scenario>
   </x:scenario>
   
 </x:description>

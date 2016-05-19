@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<p:declare-step type="mtm:dtbook-to-pef" version="1.0"
+<p:declare-step type="mtm:file-to-pef" version="1.0"
                 xmlns:mtm="http://www.mtm.se/pipeline/"
                 xmlns:p="http://www.w3.org/ns/xproc"
                 xmlns:px="http://www.daisy.org/ns/pipeline/xproc"
                 xmlns:dotify="http://code.google.com/p/dotify/"
                 xmlns:pef="http://www.daisy.org/ns/2008/pef"
+                xmlns:cx="http://xmlcalabash.com/ns/extensions"
+                xmlns:c="http://www.w3.org/ns/xproc-step"
                 exclude-inline-prefixes="#all">
     
     <p:documentation xmlns="http://www.w3.org/1999/xhtml">
-        <h1 px:role="name">DTBook to PEF (MTM)</h1>
+        <h1 px:role="name">DTBook/EPUB to PEF (MTM)</h1>
         <p px:role="desc">Transforms a DTBook (DAISY 3 XML) document into a PEF.</p>
     </p:documentation>
     
@@ -16,9 +18,9 @@
     <!-- Main options -->
     <!-- ============ -->
     <p:option name="source" required="true" px:type="anyFileURI" px:sequence="false"
-              px:media-type="application/x-dtbook+xml">
+              px:media-type="application/x-dtbook+xml application/epub+zip">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
-            <h2 px:role="name">Input DTBook</h2>
+            <h2 px:role="name">Input DTBook or EPUB</h2>
         </p:documentation>
     </p:option>
     <!--
@@ -237,7 +239,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
     <!-- =============== -->
     <!-- Inline elements -->
     <!-- =============== -->
-    <p:option name="text-level-formatting" required="false" px:type="boolean" select="'false'">
+    <p:option name="text-level-formatting" required="false" px:type="boolean" select="'true'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Inline elements: Text-level formatting (emphasis, strong)</h2>
             <p px:role="desc">When enabled, text that is in bold or italics in the print version will be rendered in bold or italics in the braille version as well.</p>
@@ -431,73 +433,100 @@ When disabled, images will only be rendered if they have a prodnote.</p>
             <h2 px:role="desc">Output directory for the HTML preview</h2>
         </p:documentation>
     </p:option>
+    <p:option name="temp-dir" required="false" px:output="temp" px:type="anyDirURI" select="''">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h2 px:role="name">Temporary directory</h2>
+            <p px:role="desc" xml:space="preserve">Directory for storing temporary files during conversion.</p>
+        </p:documentation>
+    </p:option>
     
     <!-- ======= -->
     <!-- Imports -->
     <!-- ======= -->
-    <p:import href="http://www.daisy.org/pipeline/modules/dtbook-utils/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/braille/dotify-utils/library.xpl"/>
     <p:import href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl"/>
+    <p:import href="http://www.daisy.org/pipeline/modules/file-utils/library.xpl"/>
     
-    <!-- ==== -->
-    <!-- Load -->
-    <!-- ==== -->
-    
-    <p:load>
-        <p:with-option name="href" select="$source">
-            <p:empty/>
-        </p:with-option>
-    </p:load>
-    <px:dtbook-load name="load"/>
+    <!-- =============== -->
+    <!-- Create temp dir -->
+    <!-- =============== -->
+    <px:tempdir name="temp-dir">
+        <p:with-option name="href" select="if ($temp-dir!='') then $temp-dir else $pef-output-dir"/>
+    </px:tempdir>
     <p:sink/>
-    <p:identity name="source">
-        <p:input port="source">
-            <p:pipe step="load" port="in-memory.out"/>
-        </p:input>
-    </p:identity>
     
-    <!-- ======= -->
-    <!-- Convert -->
-    <!-- ======= -->
+    <!-- ============== -->
+    <!-- Pre-processing -->
+    <!-- ============== -->
     
-	<p:choose>
-	     <p:when test="$merge-line-groups='true'">
-	         <p:xslt>
-	             <p:input port="stylesheet">
-	                 <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/linegroup.xsl"/>
-	             </p:input>
-	             <p:input port="parameters">
-	                 <p:empty/>
-	             </p:input>
-	         </p:xslt>
-	     </p:when>
-	     <p:otherwise>
-	         <p:identity/>
-	     </p:otherwise>
-	 </p:choose>
+    <p:group name="pre-processing">
+    <p:variable name="processed-source" select="resolve-uri(replace($source,'^.*/([^/]*)$','$1'),string(/c:result))">
+        <p:pipe step="temp-dir" port="result"/>
+    </p:variable>
+    <p:choose>
+        <p:when test="matches($source,'.xml$')">
+            <!--
+                DTBook
+            -->
+            <p:load>
+                <p:with-option name="href" select="$source"/>
+            </p:load>
+            <p:choose>
+                <p:when test="$merge-line-groups='true'">
+                    <p:xslt>
+                        <p:input port="stylesheet">
+                            <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/linegroup.xsl"/>
+                        </p:input>
+                        <p:input port="parameters">
+                            <p:empty/>
+                        </p:input>
+                    </p:xslt>
+                </p:when>
+                <p:otherwise>
+                    <p:identity/>
+                </p:otherwise>
+            </p:choose>
+            <p:xslt>
+                <p:input port="stylesheet">
+                    <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/move-cover-text.xsl"/>
+                </p:input>
+                <p:input port="parameters">
+                    <p:empty/>
+                </p:input>
+            </p:xslt>
+            <p:xslt>
+                <p:input port="stylesheet">
+                    <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/punktinfo.xsl"/>
+                </p:input>
+                <p:with-param name="identifier" select="$identifier"/>
+                <!-- keep is a better choice for unexpected input -->
+                <p:with-param name="captions" select="if ($include-captions='false') then ('remove') else ('keep')"></p:with-param>
+                <p:input port="parameters">
+                    <p:empty/>
+                </p:input>
+            </p:xslt>
+            <p:store>
+                <p:with-option name="href" select="$processed-source"/>
+            </p:store>
+        </p:when>
+        <p:otherwise>
+            <!--
+                EPUB
+            -->
+            <px:copy>
+                <p:with-option name="href" select="$source"/>
+                <p:with-option name="target" select="$processed-source"/>
+                <p:with-option name="fail-on-error" select="true()"/>
+            </px:copy>
+        </p:otherwise>
+    </p:choose>
     
-    <p:xslt>
-        <p:input port="stylesheet">
-            <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/move-cover-text.xsl"/>
-        </p:input>
-        <p:input port="parameters">
-            <p:empty/>
-        </p:input>
-    </p:xslt>
+    <!-- =================== -->
+    <!-- Convert with Dotify -->
+    <!-- =================== -->
     
-    <p:xslt>
-        <p:input port="stylesheet">
-            <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/punktinfo.xsl"/>
-        </p:input>
-        <p:with-param name="identifier" select="$identifier"/>
-        <!-- keep is a better choice for unexpected input -->
-        <p:with-param name="captions" select="if ($include-captions='false') then ('remove') else ('keep')"></p:with-param>
-        <p:input port="parameters">
-              <p:empty/>
-        </p:input>
-    </p:xslt>
-    
-    <dotify:xml-to-obfl locale="sv-SE" name="obfl">
+    <dotify:file-to-obfl locale="sv-SE" name="obfl" cx:depends-on="pre-processing">
+        <p:with-option name="source" select="$processed-source"/>
         <!-- <p:with-option name="identifier" select="$identifier"/> -->
         <p:with-option name="rows" select="$page-height"/>
         <p:with-option name="cols" select="$page-width"/>
@@ -518,7 +547,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         <p:with-param port="parameters" name="rear-cover-placement" select="$rear-cover-placement"/>
         <p:with-param port="parameters" name="default-paragraph-separator" select="$paragraph-layout-style"/>
         <!-- <p:with-option name="format" select="'pef'"/> -->
-    </dotify:xml-to-obfl>
+    </dotify:file-to-obfl>
     
     <dotify:obfl-to-pef locale="sv-SE" mode="uncontracted">
         <p:with-option name="identifier" select="$identifier"/>
@@ -575,5 +604,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
             </p:sink>
          </p:otherwise>
     </p:choose>
+    
+    </p:group>
     
 </p:declare-step>
