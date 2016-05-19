@@ -99,4 +99,19 @@
     </x:expect>
   </x:scenario>
   
+  <x:scenario label="text-level-formatting">
+    <x:call step="mtm:dtbook-to-pef">
+      <x:option name="source" select="resolve-uri('../resources/test_dtbook-to-pef/text-level-formatting.xml')"/>
+      <x:option name="pef-output-dir" select="concat($temp-dir,'output-dir/')"/>
+      <x:option name="identifier" select="'P00007'"/>
+      <x:option name="text-level-formatting" select="'false'"/>
+    </x:call>
+    <x:context label="pef">
+      <x:document type="file" base-uri="temp-dir" href="output-dir/P00007/P00007.pef"/>
+    </x:context>
+    <x:expect label="pef" type="custom" href="http://www.daisy.org/pipeline/modules/braille/pef-utils/library.xpl" step="x:pef-compare">
+      <x:document type="file" href="../resources/test_dtbook-to-pef/text-level-formatting.pef"/>
+    </x:expect>
+  </x:scenario>
+  
 </x:description>

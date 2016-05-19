@@ -240,7 +240,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
     <p:option name="text-level-formatting" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Inline elements: Text-level formatting (emphasis, strong)</h2>
-            <p px:role="desc">When enabled, text that is in bold or italics in the print version will be rendered in bold or italics in the braille version as well. **Not implemented**</p>
+            <p px:role="desc">When enabled, text that is in bold or italics in the print version will be rendered in bold or italics in the braille version as well.</p>
         </p:documentation>
     </p:option>
     <!--
@@ -523,6 +523,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
     <dotify:obfl-to-pef locale="sv-SE" mode="uncontracted">
         <p:with-option name="identifier" select="$identifier"/>
         <p:with-param port="parameters" name="mark-capital-letters" select="$capital-letters"/>
+        <p:with-param port="parameters" name="remove-styles" select="$text-level-formatting='false'"/>
     </dotify:obfl-to-pef>
     
     <p:xslt>
