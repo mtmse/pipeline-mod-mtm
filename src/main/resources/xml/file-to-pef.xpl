@@ -311,30 +311,6 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         </p:documentation>
     </p:option>
     
-    <!-- ================= -->
-    <!-- Generated content -->
-    <!-- ================= -->
-    <!--
-    <p:option name="ignore-document-title" required="false" px:type="boolean" select="'false'">
-        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
-            <h2 px:role="name">Generated content: Ignore document title</h2>
-            <p px:role="desc">**Not implemented**</p>
-        </p:documentation>
-    </p:option>
-    <p:option name="include-symbols-list" required="false" px:type="boolean" select="'false'">
-        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
-            <h2 px:role="name">Generated content: Include symbols list</h2>
-            <p px:role="desc">**Not implemented**</p>
-        </p:documentation>
-    </p:option>
-    <p:option name="choice-of-colophon" required="false" px:type="string" select="''">
-        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
-            <h2 px:role="name">Generated content: Choice of colophon</h2>
-            <p px:role="desc">**Not implemented**</p>
-        </p:documentation>
-    </p:option>
-    -->
-    
     <!-- ==================== -->
     <!-- Placement of content -->
     <!-- ==================== -->
@@ -582,9 +558,9 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         <p:with-option name="preview-href" select="if ($include-preview='true' and $preview-output-dir!='')
                                                    then concat($preview-output-dir,'/',$identifier,'.pef.html')
                                                    else ''"/>
-        <p:with-option name="brf-href" select="if ($include-brf='true' and $brf-output-dir!='')
-                                               then concat($brf-output-dir,'/',$identifier,'.brf')
-                                               else ''"/>
+        <p:with-option name="brf-dir-href" select="if ($include-brf='true') then $brf-output-dir else ''"/>
+        <p:with-option name="brf-name-pattern" select="concat($identifier,'_vol-{}')"/>
+        <p:with-option name="brf-single-volume-name" select="$identifier"/>
     </pef:store>
     
     <p:choose>
