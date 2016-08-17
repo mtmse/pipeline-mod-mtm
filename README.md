@@ -55,4 +55,4 @@ MTM specific modules for the DAISY Pipeline 2
   git push origin v${VERSION}
   ```
   
-- Add the release notes to http://github.com/snaekobbi/pipeline-mod-mtm/releases/v${VERSION}.
+- Add the release notes to http://github.com/mtmse/pipeline-mod-mtm/releases/v${VERSION}.
