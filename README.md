@@ -1,6 +1,6 @@
 # pipeline-mod-mtm
 
-[![Build Status](https://travis-ci.org/snaekobbi/pipeline-mod-mtm.png?branch=master)](https://travis-ci.org/snaekobbi/pipeline-mod-mtm)
+[![Build Status](https://travis-ci.org/mtmse/pipeline-mod-mtm.png?branch=master)](https://travis-ci.org/mtmse/pipeline-mod-mtm)
 
 MTM specific modules for the DAISY Pipeline 2
 
@@ -33,7 +33,7 @@ MTM specific modules for the DAISY Pipeline 2
 
   ```sh
   git push origin release/${VERSION}:release/${VERSION}
-  hub pull-request -b snaekobbi:master -h snaekobbi:release/${VERSION} -m "Release version ${VERSION}"
+  hub pull-request -b mtmse:master -h mtmse:release/${VERSION} -m "Release version ${VERSION}"
   ```
   
 - Stage the artifact on https://oss.sonatype.org and comment on pull request.
