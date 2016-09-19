@@ -42,7 +42,6 @@
 	<xsl:include href="./lib/recursive-copy.xsl"/>
 	<xsl:include href="./lib/dtbook-output.xsl"/>
 	<xsl:include href="./lib/validation-tests.xsl"/>
-	<xsl:include href="./lib/messages/errors.xsl"/>
 	<xsl:include href="./lib/localization.xsl"/>
 	
 	<xsl:param name="year" select="format-date(current-date(), '[Y0001]')"/>
