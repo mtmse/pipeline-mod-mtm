@@ -549,6 +549,11 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         </p:input>
     </p:xslt>
     
+    <pef:validate>
+    	<p:with-option name="assert-valid" select="'true'"/>
+    	<p:with-option name="temp-dir" select="$temp-dir"/>
+    </pef:validate>
+    
     <!-- ===== -->
     <!-- Store -->
     <!-- ===== -->
