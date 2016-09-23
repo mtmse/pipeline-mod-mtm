@@ -1,3 +1,11 @@
+pipeline-mod-mtm v1.7.0
+=======================
+
+Includes
+--------
+- Added PEF validation
+- Fixed a problem with an xslt import that caused an error message (but no actual error)
+
 pipeline-mod-mtm v1.5.1
 =======================
 Compatibility update
