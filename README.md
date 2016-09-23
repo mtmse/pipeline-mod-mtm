@@ -22,11 +22,12 @@ MTM specific modules for the DAISY Pipeline 2
 - Set the version in pom.xml to `${VERSION}-SNAPSHOT` and commit.
 - Make release notes and commit. (View changes since previous release with `git diff v1.1.0...HEAD`
   and look for relevant Github issues on [https://github.com/search](https://github.com/search))
-- Perform the release with Maven.
+- Perform the release with Maven. Note that a server configuration for "sonatype-nexus-staging" must be 
+in settings.xml (${maven.home}/conf/settings.xml or ${user.home}/.m2/settings.xml).
 
 ```sh
   mvn clean release:clean release:prepare -DpushChanges=false
-  mvn release:perform -DlocalCheckout=true
+  mvn release:perform -DlocalCheckout=true -Darguments=-Dgpg.passphrase=[thephrase]
   ```
   
 - Push and make a pull request (for turning an existing issue into a PR use the `-i <issueno>` switch).
