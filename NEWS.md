@@ -1,3 +1,12 @@
+pipeline-mod-mtm v1.8.0
+=======================
+
+Includes
+--------
+- Addes an option to enable mtm-addons
+- Removes the toc preamble
+- Passes identifier to Dotify input conversion
+
 pipeline-mod-mtm v1.7.0
 =======================
 
