@@ -381,6 +381,14 @@ When disabled, images will only be rendered if they have a prodnote.</p>
     <!--
         TODO: also add to other scripts?
     -->
+    
+    <p:option name="apply-mtm-addons" required="false" px:type="boolean" select="'true'">
+        <p:documentation>
+            <h2 px:role="name">Other: Apply mtm addons</h2>
+            <p px:role="desc">Apply mtm addons.</p>
+        </p:documentation>
+    </p:option>
+
     <p:option name="other" required="false" px:type="string" select="''">
         <p:documentation>
             <h2 px:role="name">Other: Advanced options</h2>
@@ -512,6 +520,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         <p:with-option name="outer-margin" select="$outer-margin"/>
         <p:with-option name="splitterMax" select="$maximum-number-of-pages"/>
         <p:with-option name="dotify-options" select="$other"/>
+        <p:with-param port="parameters" name="identifier" select="$identifier"/>
         <p:with-param port="parameters" name="duplex" select="$duplex"/>
         <p:with-param port="parameters" name="hyphenate" select="$hyphenation"/>
         <p:with-param port="parameters" name="toc-depth" select="$toc-depth"/>
@@ -522,6 +531,9 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         <p:with-param port="parameters" name="colophon-metadata-placement" select="$colophon-metadata-placement"/>
         <p:with-param port="parameters" name="rear-cover-placement" select="$rear-cover-placement"/>
         <p:with-param port="parameters" name="default-paragraph-separator" select="$paragraph-layout-style"/>
+        <p:with-param port="parameters" name="apply-mtm-addons" select="$apply-mtm-addons"/>
+        <!-- Disables the toc preamble, requires dotify.task.impl:2.11.1+ -->
+        <p:with-param port="parameters" name="l10nTocDescription" select="''"/>
         <!-- <p:with-option name="format" select="'pef'"/> -->
     </dotify:file-to-obfl>
     
