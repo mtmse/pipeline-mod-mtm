@@ -14,6 +14,14 @@
         <p px:role="desc">Transforms a DTBook (DAISY 3 XML) document into a PEF.</p>
     </p:documentation>
     
+    <p:output port="validation-status" px:media-type="application/vnd.pipeline.status+xml">
+        <p:documentation xmlns="http://www.w3.org/1999/xhtml">
+            <h1 px:role="name">Validation status</h1>
+            <p px:role="desc">Validation status (http://code.google.com/p/daisy-pipeline/wiki/ValidationStatusXML).</p>
+        </p:documentation>
+        <p:pipe port="validation-status" step="validate-pef"/>
+    </p:output>
+    
     <!-- ============ -->
     <!-- Main options -->
     <!-- ============ -->
@@ -444,11 +452,20 @@ When disabled, images will only be rendered if they have a prodnote.</p>
     <!-- ============== -->
     
     <p:group name="pre-processing">
+    <p:output port="result" primary="true">
+        <p:documentation>
+            A document containing a single c:result element whose content is the absolute URI of the
+            produced document.
+        </p:documentation>
+    </p:output>
     <p:variable name="processed-source" select="resolve-uri(replace($source,'^.*/([^/]*)$','$1'),string(/c:result))">
         <p:pipe step="temp-dir" port="result"/>
     </p:variable>
     <p:choose>
         <p:when test="matches($source,'.xml$')">
+            <p:output port="result" primary="true">
+                <p:pipe step="store" port="result"/>
+            </p:output>
             <!--
                 DTBook
             -->
@@ -489,28 +506,32 @@ When disabled, images will only be rendered if they have a prodnote.</p>
                     <p:empty/>
                 </p:input>
             </p:xslt>
-            <p:store>
+            <p:store name="store">
                 <p:with-option name="href" select="$processed-source"/>
             </p:store>
         </p:when>
         <p:otherwise>
+            <p:output port="result" primary="true">
+                <p:pipe step="copy" port="result"/>
+            </p:output>
             <!--
                 EPUB
             -->
-            <px:copy>
+            <px:copy name="copy">
                 <p:with-option name="href" select="$source"/>
                 <p:with-option name="target" select="$processed-source"/>
                 <p:with-option name="fail-on-error" select="true()"/>
             </px:copy>
         </p:otherwise>
     </p:choose>
+    </p:group>
     
     <!-- =================== -->
     <!-- Convert with Dotify -->
     <!-- =================== -->
     
     <dotify:file-to-obfl locale="sv-SE" name="obfl" cx:depends-on="pre-processing">
-        <p:with-option name="source" select="$processed-source"/>
+        <p:with-option name="source" select="string(/c:result)"/>
         <!-- <p:with-option name="identifier" select="$identifier"/> -->
         <p:with-option name="rows" select="$page-height"/>
         <p:with-option name="cols" select="$page-width"/>
@@ -561,8 +582,8 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         </p:input>
     </p:xslt>
     
-    <pef:validate>
-    	<p:with-option name="assert-valid" select="'true'"/>
+    <pef:validate name="validate-pef">
+    	<p:with-option name="assert-valid" select="'false'"/>
     	<p:with-option name="temp-dir" select="$temp-dir"/>
     </pef:validate>
     
@@ -597,7 +618,5 @@ When disabled, images will only be rendered if they have a prodnote.</p>
             </p:sink>
          </p:otherwise>
     </p:choose>
-    
-    </p:group>
     
 </p:declare-step>
