@@ -450,7 +450,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
     <!-- ============== -->
     <!-- Pre-processing -->
     <!-- ============== -->
-    
+    <!-- This can be removed, as it has been emptied. -->
     <p:group name="pre-processing">
     <p:output port="result" primary="true">
         <p:documentation>
@@ -472,40 +472,6 @@ When disabled, images will only be rendered if they have a prodnote.</p>
             <p:load>
                 <p:with-option name="href" select="$source"/>
             </p:load>
-            <p:choose>
-                <p:when test="$merge-line-groups='true'">
-                    <p:xslt>
-                        <p:input port="stylesheet">
-                            <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/linegroup.xsl"/>
-                        </p:input>
-                        <p:input port="parameters">
-                            <p:empty/>
-                        </p:input>
-                    </p:xslt>
-                </p:when>
-                <p:otherwise>
-                    <p:identity/>
-                </p:otherwise>
-            </p:choose>
-            <p:xslt>
-                <p:input port="stylesheet">
-                    <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/move-cover-text.xsl"/>
-                </p:input>
-                <p:input port="parameters">
-                    <p:empty/>
-                </p:input>
-            </p:xslt>
-            <p:xslt>
-                <p:input port="stylesheet">
-                    <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/punktinfo.xsl"/>
-                </p:input>
-                <p:with-param name="identifier" select="$identifier"/>
-                <!-- keep is a better choice for unexpected input -->
-                <p:with-param name="captions" select="if ($include-captions='false') then ('remove') else ('keep')"></p:with-param>
-                <p:input port="parameters">
-                    <p:empty/>
-                </p:input>
-            </p:xslt>
             <p:store name="store">
                 <p:with-option name="href" select="$processed-source"/>
             </p:store>
