@@ -225,7 +225,8 @@ When disabled, images will only be rendered if they have a prodnote.</p>
     <p:option name="merge-line-groups" required="false" px:type="boolean" select="'false'">
         <p:documentation xmlns="http://www.w3.org/1999/xhtml">
             <h2 px:role="name">Block elements: Merge line groups</h2>
-            <p px:role="desc">When enabled, lines in a linegroup are merged into a single paragraph, unless the line starts with a dash.</p>
+            <p px:role="desc">When enabled, lines in a linegroup are merged into a single paragraph, unless the line starts with a dash. 
+		Note that this option only works when mtm-addons are applied (see advanced options) and only for DTBook.</p>
         </p:documentation>
     </p:option>
     
@@ -447,58 +448,12 @@ When disabled, images will only be rendered if they have a prodnote.</p>
     </px:tempdir>
     <p:sink/>
     
-    <!-- ============== -->
-    <!-- Pre-processing -->
-    <!-- ============== -->
-    <!-- This can be removed, as it has been emptied. -->
-    <p:group name="pre-processing">
-    <p:output port="result" primary="true">
-        <p:documentation>
-            A document containing a single c:result element whose content is the absolute URI of the
-            produced document.
-        </p:documentation>
-    </p:output>
-    <p:variable name="processed-source" select="resolve-uri(replace($source,'^.*/([^/]*)$','$1'),string(/c:result))">
-        <p:pipe step="temp-dir" port="result"/>
-    </p:variable>
-    <p:choose>
-        <p:when test="matches($source,'.xml$')">
-            <p:output port="result" primary="true">
-                <p:pipe step="store" port="result"/>
-            </p:output>
-            <!--
-                DTBook
-            -->
-            <p:load>
-                <p:with-option name="href" select="$source"/>
-            </p:load>
-            <p:store name="store">
-                <p:with-option name="href" select="$processed-source"/>
-            </p:store>
-        </p:when>
-        <p:otherwise>
-            <p:output port="result" primary="true">
-                <p:pipe step="copy" port="result"/>
-            </p:output>
-            <!--
-                EPUB
-            -->
-            <px:copy name="copy">
-                <p:with-option name="href" select="$source"/>
-                <p:with-option name="target" select="$processed-source"/>
-                <p:with-option name="fail-on-error" select="true()"/>
-            </px:copy>
-        </p:otherwise>
-    </p:choose>
-    </p:group>
-    
     <!-- =================== -->
     <!-- Convert with Dotify -->
     <!-- =================== -->
     
-    <dotify:file-to-obfl locale="sv-SE" name="obfl" cx:depends-on="pre-processing">
-        <p:with-option name="source" select="string(/c:result)"/>
-        <!-- <p:with-option name="identifier" select="$identifier"/> -->
+    <dotify:file-to-obfl locale="sv-SE" name="obfl">
+        <p:with-option name="source" select="$source"/>
         <p:with-option name="rows" select="$page-height"/>
         <p:with-option name="cols" select="$page-width"/>
         <!-- single line spacing is a better choice for unexpected input -->
@@ -518,6 +473,7 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         <p:with-param port="parameters" name="colophon-metadata-placement" select="$colophon-metadata-placement"/>
         <p:with-param port="parameters" name="rear-cover-placement" select="$rear-cover-placement"/>
         <p:with-param port="parameters" name="default-paragraph-separator" select="$paragraph-layout-style"/>
+	<p:with-param port="parameters" name="merge-line-groups" select="$merge-line-groups"/>
         <p:with-param port="parameters" name="apply-mtm-addons" select="$apply-mtm-addons"/>
         <!-- Disables the toc preamble, requires dotify.task.impl:2.11.1+ -->
         <p:with-param port="parameters" name="l10nTocDescription" select="''"/>
