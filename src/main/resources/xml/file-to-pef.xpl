@@ -446,12 +446,21 @@ When disabled, images will only be rendered if they have a prodnote.</p>
     <px:tempdir name="temp-dir">
         <p:with-option name="href" select="if ($temp-dir!='') then $temp-dir else $pef-output-dir"/>
     </px:tempdir>
+
+    <!-- ================= -->
+    <!-- Create output dir -->
+    <!-- ================= -->
+    <px:tempdir name="pef-output-dir">
+        <p:with-option name="href" select="concat($pef-output-dir,'/',$identifier)"/>
+    </px:tempdir>
     <p:sink/>
-    
+
     <!-- =================== -->
     <!-- Convert with Dotify -->
     <!-- =================== -->
-    
+    <p:group cx:depends-on="pef-output-dir">
+    <p:variable name="obfl-location" select="if ($include-obfl='true') then concat($pef-output-dir,'/',$identifier,'/',$identifier,'.obfl') else concat($temp-dir,'/',$identifier,'.obfl')"/>
+
     <dotify:file-to-obfl locale="sv-SE" name="obfl">
         <p:with-option name="source" select="$source"/>
         <p:with-option name="rows" select="$page-height"/>
@@ -475,34 +484,17 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         <p:with-param port="parameters" name="default-paragraph-separator" select="$paragraph-layout-style"/>
 	<p:with-param port="parameters" name="merge-line-groups" select="$merge-line-groups"/>
         <p:with-param port="parameters" name="apply-mtm-addons" select="$apply-mtm-addons"/>
+	<!-- obfl-output-location expects a file path, so we remove the scheme prefix from the uri -->
+	<p:with-param port="parameters" name="obfl-output-location" select="replace($obfl-location, '^\w+:(//)?(.*)$', '$2')"/>
         <!-- Disables the toc preamble, requires dotify.task.impl:2.11.1+ -->
         <p:with-param port="parameters" name="l10nTocDescription" select="''"/>
-        <!-- <p:with-option name="format" select="'pef'"/> -->
-    </dotify:file-to-obfl>
-    
-    <dotify:obfl-to-pef locale="sv-SE" mode="uncontracted">
-        <p:with-option name="identifier" select="$identifier"/>
+	<!-- obfl to pef -->
         <p:with-param port="parameters" name="mark-capital-letters" select="$capital-letters"/>
         <p:with-param port="parameters" name="remove-styles" select="$text-level-formatting='false'"/>
-    </dotify:obfl-to-pef>
-    
-    <p:xslt>
-        <p:input port="stylesheet">
-            <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/pef-meta-finalizer.xsl"/>
-        </p:input>
-        <p:input port="parameters">
-            <p:empty/>
-        </p:input>
-    </p:xslt>
-    
-    <p:xslt>
-        <p:input port="stylesheet">
-            <p:document href="http://www.mtm.se/pipeline/modules/braille/internal/pef-section-patch.xsl"/>
-        </p:input>
-        <p:input port="parameters">
-            <p:empty/>
-        </p:input>
-    </p:xslt>
+	<p:with-param port="parameters" name="apply-pef-tweaks" select="'true'"/>
+        <p:with-option name="format" select="'pef'"/>
+    </dotify:file-to-obfl>
+    </p:group>
     
     <pef:validate name="validate-pef">
     	<p:with-option name="assert-valid" select="'false'"/>
@@ -522,23 +514,5 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         <p:with-option name="brf-name-pattern" select="concat($identifier,'_vol-{}')"/>
         <p:with-option name="brf-single-volume-name" select="$identifier"/>
     </pef:store>
-    
-    <p:choose>
-        <p:when test="$include-obfl='true'">
-            <p:store>
-                <p:input port="source">
-                    <p:pipe step="obfl" port="result"/>
-                </p:input>
-                <p:with-option name="href" select="concat($pef-output-dir,'/',$identifier,'/',$identifier,'.obfl')"/>
-            </p:store>
-        </p:when>
-        <p:otherwise>
-            <p:sink>
-                <p:input port="source">
-                    <p:empty/>
-                </p:input>
-            </p:sink>
-         </p:otherwise>
-    </p:choose>
     
 </p:declare-step>
