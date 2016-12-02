@@ -446,14 +446,14 @@ When disabled, images will only be rendered if they have a prodnote.</p>
     <px:tempdir name="temp-dir">
         <p:with-option name="href" select="if ($temp-dir!='') then $temp-dir else $pef-output-dir"/>
     </px:tempdir>
+    <p:sink/>
 
     <!-- ================= -->
     <!-- Create output dir -->
     <!-- ================= -->
-    <px:tempdir name="pef-output-dir">
+    <px:mkdir name="pef-output-dir">
         <p:with-option name="href" select="concat($pef-output-dir,'/',$identifier)"/>
-    </px:tempdir>
-    <p:sink/>
+    </px:mkdir>
 
     <!-- =================== -->
     <!-- Convert with Dotify -->
