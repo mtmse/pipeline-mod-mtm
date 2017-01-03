@@ -482,7 +482,9 @@ When disabled, images will only be rendered if they have a prodnote.</p>
         <p:with-param port="parameters" name="colophon-metadata-placement" select="$colophon-metadata-placement"/>
         <p:with-param port="parameters" name="rear-cover-placement" select="$rear-cover-placement"/>
         <p:with-param port="parameters" name="default-paragraph-separator" select="$paragraph-layout-style"/>
-	<p:with-param port="parameters" name="merge-line-groups" select="$merge-line-groups"/>
+        <!-- keep is a better choice for unexpected input -->
+		<p:with-param port="parameters" name="captions" select="if ($include-captions='false') then ('remove') else ('keep')"/>
+		<p:with-param port="parameters" name="merge-line-groups" select="$merge-line-groups"/>
         <p:with-param port="parameters" name="apply-mtm-addons" select="$apply-mtm-addons"/>
 	<!-- obfl-output-location expects a file path, so we remove the scheme prefix from the uri -->
 	<p:with-param port="parameters" name="obfl-output-location" select="replace($obfl-location, '^\w+:(//)?(.*)$', '$2')"/>
