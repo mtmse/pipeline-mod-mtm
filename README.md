@@ -1,6 +1,6 @@
 # pipeline-mod-mtm
 
-[![Build Status](https://travis-ci.org/mtmse/pipeline-mod-mtm.png?branch=master)](https://travis-ci.org/mtmse/pipeline-mod-mtm)
+[![Build Status](https://travis-ci.com/mtmse/pipeline-mod-mtm.svg?branch=master)](https://travis-ci.com/mtmse/pipeline-mod-mtm)
 
 MTM specific modules for the DAISY Pipeline 2
 
